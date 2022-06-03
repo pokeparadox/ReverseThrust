@@ -58,6 +58,10 @@ window/size/width=1280
 window/size/height=720
 window/vsync/vsync_via_compositor=true
 
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/gdfxr/plugin.cfg" )
+
 [input]
 
 Thrust={
@@ -85,6 +89,15 @@ RotateRight={
 
 pointing/emulate_touch_from_mouse=true
 pointing/emulate_mouse_from_touch=false
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="ThrustParticle"
+2d_physics/layer_3="WorldObject"
+2d_physics/layer_4="Wall"
+2d_physics/layer_5="CameraAscendDetect"
+2d_physics/layer_6="KillFloor"
 
 [physics]
 
