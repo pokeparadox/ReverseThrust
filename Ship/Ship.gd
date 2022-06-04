@@ -31,9 +31,12 @@ func _physics_process(delta):
 		vec.y = -vec.y
 		_velocity += vec
 		$Exhaust.SetExhaust(true)
+		if not $ExhaustSound.is_playing():
+			$ExhaustSound.play()
 	else:
 		_velocity *= 0.99
 		$Exhaust.SetExhaust(false)
+		$ExhaustSound.stop()
 
 	_velocity.y += gravity * delta * 0.01
 	var _collision = move_and_collide(_velocity)

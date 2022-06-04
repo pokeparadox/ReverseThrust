@@ -11,4 +11,4 @@ dest_files=[ "res://.import/Thrust.sfxr-abcb1167e4391e26717dcfc67d96cd6c.sample"
 
 [params]
 
-loop=false
+loop=true

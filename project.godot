@@ -19,6 +19,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Shapes/Line.gd"
 }, {
+"base": "Node2D",
+"class": "Rectangle",
+"language": "GDScript",
+"path": "res://Shapes/Rectangle.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Ship",
 "language": "GDScript",
@@ -32,6 +37,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Brad": "",
 "Line": "",
+"Rectangle": "",
 "Ship": "",
 "Square": ""
 }
@@ -39,6 +45,7 @@ _global_script_class_icons={
 [application]
 
 config/name="ReverseThrust"
+run/main_scene="res://World/MainLevel.tscn"
 config/icon="res://icon.png"
 
 [autoload]

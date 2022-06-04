@@ -9,12 +9,9 @@ rotation = 1.5708
 script = ExtResource( 4 )
 
 [node name="ExhaustEmitter" parent="." instance=ExtResource( 1 )]
-amount = 64
-amount_random = 0.018
+amount = 128
 particle_scene = ExtResource( 2 )
-explosiveness = 0.018
 lifetime = 3.0
 lifetime_random = 0.062
-impulse = 1000.0
-force = 5.0
-force_spread_degrees = 133.805
+impulse = 300.0
+impulse_spread_degrees = 2.0
