@@ -3,7 +3,6 @@ extends Node
 class_name Brad
 
 const MAX_VALUE : int = 255
-const INV_PI : float = 1.0 / PI
 
 var angle : int = 0
 

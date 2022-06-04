@@ -17,12 +17,12 @@ position = Vector2( 4, 407 )
 collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
-position = Vector2( -5, 0 )
+position = Vector2( 2, -9 )
 shape = SubResource( 1 )
 
 [node name="Rectangle" parent="LeftWall" instance=ExtResource( 2 )]
 position = Vector2( 40, -35 )
-Width = 10.0
+Width = 20.0
 Height = 800.0
 
 [node name="RightWall" type="StaticBody2D" parent="."]
@@ -30,12 +30,12 @@ position = Vector2( 1342, 407 )
 collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
-position = Vector2( 11, 0 )
+position = Vector2( 8, -9 )
 shape = SubResource( 1 )
 
 [node name="Rectangle" parent="RightWall" instance=ExtResource( 2 )]
 position = Vector2( -32, -36 )
-Width = 10.0
+Width = 20.0
 Height = 800.0
 
 [node name="DeathZone" type="StaticBody2D" parent="."]
