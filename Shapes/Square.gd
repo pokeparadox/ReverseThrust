@@ -1,4 +1,5 @@
 extends Node2D
+tool
 class_name Square
 
 export var IsFilled : bool = true

@@ -1,4 +1,5 @@
 extends Node2D
+tool
 class_name Line
 
 export var LineWidth : float = 1.0

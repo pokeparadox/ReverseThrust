@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/RigidBodyParticles2D/RigidBodyParticles2D.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Ship/Exhaust/ExhaustParticle.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Ship/Exhaust/Exhaust.gd" type="Script" id=4]
+
+[node name="Exhaust" type="Node2D"]
+rotation = 1.5708
+script = ExtResource( 4 )
+
+[node name="ExhaustEmitter" parent="." instance=ExtResource( 1 )]
+amount = 64
+amount_random = 0.018
+particle_scene = ExtResource( 2 )
+explosiveness = 0.018
+lifetime = 3.0
+lifetime_random = 0.062
+impulse = 1000.0
+force = 5.0
+force_spread_degrees = 133.805
