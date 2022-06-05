@@ -21,8 +21,13 @@ func _ready() -> void:
 	shipHeading.SetAngle(0)
 	$Exhaust.SetExhaust(false)
 	$Explosion.Explode(false)
+	setShipVisible(true)
 
 func _physics_process(delta):
+	var isExploding = $ExplodeSound.is_playing()
+	if isExploding:
+		return
+
 	var rot = -(Input.get_action_strength("RotateLeft") - Input.get_action_strength("RotateRight"))
 	shipHeading = shipHeading.AddAngle(rot * delta * ROTATE_SPEED)
 	SetShipThrusterAngle(shipHeading.GetAngleDeg())
@@ -42,15 +47,26 @@ func _physics_process(delta):
 	_velocity.y += gravity * delta * 0.01
 	var _collision = move_and_collide(_velocity)
 	if _collision:
-		if not $ExplodeSound.is_playing():
-			$ExplodeSound.play()
-		$Explosion.Explode(true)
+		ShipExplodes(isExploding)
+		if _collision.collider.has_method("Hit"):
+			_collision.collider.Hit()
 
+func ShipExplodes(isExploding : bool) -> void:
+	if not isExploding:
+		setShipVisible(false)
+		$ExplodeSound.play()
+	$Explosion.Explode(true)
 
 func SetShipThrusterAngle(thrust: float):
 	$Thruster.rotation_degrees = thrust
 	$Exhaust.SetAngle(thrust)
 
+func setShipVisible(isVisible : bool) -> void:
+	$Square.visible = isVisible
+	$Thruster.visible = isVisible
+	$Exhaust.SetExhaust(isVisible)
+	if not isVisible:
+		$ExhaustSound.stop()
 
 func _on_ExplodeSound_finished() -> void:
 	_ready()

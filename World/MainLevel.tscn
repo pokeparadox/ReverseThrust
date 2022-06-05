@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Ship/Ship.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Shapes/Rectangle.tscn" type="PackedScene" id=2]
 [ext_resource path="res://World/Camera.gd" type="Script" id=3]
 [ext_resource path="res://World/MainLevel.gd" type="Script" id=4]
+[ext_resource path="res://World/Obstacles/Destructable/Destructable.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 50, 2000 )
@@ -58,3 +59,9 @@ limit_right = 1280
 limit_bottom = 720
 editor_draw_limits = true
 script = ExtResource( 3 )
+
+[node name="Destructable" parent="." instance=ExtResource( 5 )]
+position = Vector2( 423, -495 )
+
+[node name="Destructable2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 646, -555 )

@@ -1,0 +1,14 @@
+[remap]
+
+importer="com.timothyqiu.gdfxr.importer"
+type="AudioStreamSample"
+path="res://.import/Crumble.sfxr-623e5ac8142be16b72531875478ec9db.sample"
+
+[deps]
+
+source_file="res://World/Obstacles/Destructable/Crumble.sfxr"
+dest_files=[ "res://.import/Crumble.sfxr-623e5ac8142be16b72531875478ec9db.sample" ]
+
+[params]
+
+loop=false
