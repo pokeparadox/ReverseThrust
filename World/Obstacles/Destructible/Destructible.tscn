@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Shapes/Square.tscn" type="PackedScene" id=1]
-[ext_resource path="res://World/Obstacles/Destructable/Crumble.sfxr" type="AudioStream" id=2]
-[ext_resource path="res://World/Obstacles/Destructable/Destructable.gd" type="Script" id=3]
+[ext_resource path="res://World/Obstacles/Destructible/Crumble.sfxr" type="AudioStream" id=2]
+[ext_resource path="res://World/Obstacles/Destructible/Destructible.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 2, 2 )
+extents = Vector2( 4, 4 )
 
 [node name="Destructable" type="Area2D"]
 collision_layer = 4
@@ -16,6 +16,7 @@ script = ExtResource( 3 )
 shape = SubResource( 1 )
 
 [node name="Square" parent="." instance=ExtResource( 1 )]
+Length = 8.0
 
 [node name="Crumble" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 2 )

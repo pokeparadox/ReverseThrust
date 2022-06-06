@@ -10,7 +10,7 @@ script = ExtResource( 4 )
 
 [node name="ExhaustEmitter" parent="." instance=ExtResource( 1 )]
 emitting = false
-amount = 64
+amount = 32
 particle_scene = ExtResource( 2 )
 lifetime = 3.0
 impulse = 300.0

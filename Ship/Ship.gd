@@ -20,11 +20,13 @@ func _ready() -> void:
 	self.position = screenRes * 0.5
 	shipHeading.SetAngle(0)
 	$Exhaust.SetExhaust(false)
+	$Exhaust.visible = false
 	$Explosion.Explode(false)
 	setShipVisible(true)
 
 func _physics_process(delta):
 	var isExploding = $ExplodeSound.is_playing()
+	$Exhaust.visible = not isExploding
 	if isExploding:
 		return
 
@@ -55,6 +57,7 @@ func ShipExplodes(isExploding : bool) -> void:
 	if not isExploding:
 		setShipVisible(false)
 		$ExplodeSound.play()
+
 	$Explosion.Explode(true)
 
 func SetShipThrusterAngle(thrust: float):
@@ -64,7 +67,7 @@ func SetShipThrusterAngle(thrust: float):
 func setShipVisible(isVisible : bool) -> void:
 	$Square.visible = isVisible
 	$Thruster.visible = isVisible
-	$Exhaust.SetExhaust(isVisible)
+
 	if not isVisible:
 		$ExhaustSound.stop()
 

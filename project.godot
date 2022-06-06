@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Maths/Brad.gd"
 }, {
+"base": "Area2D",
+"class": "Destructible",
+"language": "GDScript",
+"path": "res://World/Obstacles/Destructible/Destructible.gd"
+}, {
 "base": "Node2D",
 "class": "Line",
 "language": "GDScript",
@@ -36,6 +41,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Brad": "",
+"Destructible": "",
 "Line": "",
 "Rectangle": "",
 "Ship": "",
