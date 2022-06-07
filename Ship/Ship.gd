@@ -8,7 +8,8 @@ onready var screenRes : Vector2 = Resolution.GetResolution()
 var shipHeading : Brad
 const ROTATE_SPEED : int = 200
 const THRUST_SPEED : int = 20
-
+const MAX_THRUST_SQ : int = 800
+var highestHeight : int = 0
 
 var _velocity = Vector2.ZERO
 
@@ -18,6 +19,7 @@ func _init() -> void:
 func _ready() -> void:
 	_velocity = Vector2.ZERO
 	self.position = screenRes * 0.5
+	highestHeight = int(self.position.y)
 	shipHeading.SetAngle(0)
 	$Exhaust.SetExhaust(false)
 	$Exhaust.visible = false
@@ -35,9 +37,12 @@ func _physics_process(delta):
 	SetShipThrusterAngle(shipHeading.GetAngleDeg())
 
 	if Input.is_action_pressed("Thrust"):
-		var vec : Vector2 = BradLut.BradToVector2d(shipHeading) * delta * THRUST_SPEED
-		vec.y = -vec.y
-		_velocity += vec
+		var vec : Vector2 = BradLut.BradToVector2d(shipHeading)
+		if _velocity.length_squared() < MAX_THRUST_SQ:
+			vec = vec * delta * THRUST_SPEED
+			vec.y = -vec.y
+			_velocity += vec
+
 		$Exhaust.SetExhaust(true)
 		if not $ExhaustSound.is_playing():
 			$ExhaustSound.play()
@@ -47,6 +52,9 @@ func _physics_process(delta):
 		$ExhaustSound.stop()
 
 	_velocity.y += gravity * delta * 0.01
+	if _velocity.y < highestHeight:
+		highestHeight = _velocity.y
+
 	var _collision = move_and_collide(_velocity)
 	if _collision:
 		ShipExplodes(isExploding)
@@ -73,3 +81,4 @@ func setShipVisible(isVisible : bool) -> void:
 
 func _on_ExplodeSound_finished() -> void:
 	_ready()
+	position.y = highestHeight

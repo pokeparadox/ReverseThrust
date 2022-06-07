@@ -1,11 +1,17 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 2000, 10 )
+[ext_resource path="res://World/Obstacles/Destructible/DestructibleBlock.tscn" type="PackedScene" id=1]
+[ext_resource path="res://World/Obstacles/LevelDivider/LevelDivider.gd" type="Script" id=2]
+[ext_resource path="res://World/Obstacles/LevelDivider/Teleport.sfxr" type="AudioStream" id=3]
 
 [node name="LevelDivider" type="Node2D"]
+script = ExtResource( 2 )
 
-[node name="Area" type="Area2D" parent="."]
+[node name="PositionNextLevel" type="Position2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
-shape = SubResource( 1 )
+[node name="DestructibleBlock" parent="." instance=ExtResource( 1 )]
+NumBlocksHeight = 1
+NumBlocksWidth = 310
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )

@@ -4,7 +4,7 @@
 [ext_resource path="res://Shapes/Rectangle.tscn" type="PackedScene" id=2]
 [ext_resource path="res://World/Camera.gd" type="Script" id=3]
 [ext_resource path="res://World/MainLevel.gd" type="Script" id=4]
-[ext_resource path="res://World/Obstacles/Destructible/DestructibleBlock.tscn" type="PackedScene" id=5]
+[ext_resource path="res://World/Obstacles/LevelDivider/LevelDivider.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 50, 2000 )
@@ -60,5 +60,5 @@ limit_bottom = 720
 editor_draw_limits = true
 script = ExtResource( 3 )
 
-[node name="DestructibleBlock" parent="." instance=ExtResource( 5 )]
-position = Vector2( 207, -625 )
+[node name="LevelDivider" parent="." instance=ExtResource( 5 )]
+position = Vector2( 24, 0 )

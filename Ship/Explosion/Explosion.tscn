@@ -9,9 +9,8 @@ script = ExtResource( 3 )
 
 [node name="ExplosionEmit" parent="." instance=ExtResource( 1 )]
 emitting = false
-amount = 180
+amount = 90
 particle_scene = ExtResource( 2 )
 explosiveness = 0.8
-lifetime = 2.5
 impulse = 250.0
 impulse_spread_degrees = 360.0
