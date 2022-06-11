@@ -4,6 +4,7 @@ onready var CameraStartHeight : int = $Camera.position.y
 onready var WallOffset : int = CameraStartHeight - $LeftWall.position.y
 onready var FloorStartLastHeight : int = $DeathZone.position.y
 onready var FloorOffset : int = CameraStartHeight - FloorStartLastHeight
+var GameLevel : int = 0
 
 
 func _physics_process(_delta: float) -> void:
@@ -23,8 +24,12 @@ func ProcessWallsAndFloor() -> void:
 		$DeathZone.position.y = change
 
 func CheckLevelProgression() -> void:
+	var levelShift : int = 800
 	if $Ship.position.y < $LevelDivider.position.y:
 		$ProgressiveMusicPlayer.SkipLoop()
-		var nextDividerHeight : int = $LevelDivider.position.y - 800
+		var nextDividerHeight : int = $LevelDivider.position.y - levelShift
 		$LevelDivider.Reset()
 		$LevelDivider.position.y = nextDividerHeight
+		GameLevel += 1
+		$RandomWallGen.SetLevelObstacles(GameLevel)
+		$RandomWallGen.position.y = $RandomWallGen.position.y - levelShift

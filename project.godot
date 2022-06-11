@@ -58,6 +58,7 @@ config/icon="res://icon.png"
 
 BradLut="*res://Maths/BradLut.gd"
 Resolution="*res://Utils/Resolution.gd"
+Random="*res://Maths/Random.gd"
 
 [debug]
 
