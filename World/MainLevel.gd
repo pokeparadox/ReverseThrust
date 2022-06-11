@@ -24,6 +24,7 @@ func ProcessWallsAndFloor() -> void:
 
 func CheckLevelProgression() -> void:
 	if $Ship.position.y < $LevelDivider.position.y:
+		$ProgressiveMusicPlayer.SkipLoop()
 		var nextDividerHeight : int = $LevelDivider.position.y - 800
 		$LevelDivider.Reset()
 		$LevelDivider.position.y = nextDividerHeight

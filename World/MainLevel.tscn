@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Ship/Ship.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Shapes/Rectangle.tscn" type="PackedScene" id=2]
 [ext_resource path="res://World/Camera.gd" type="Script" id=3]
 [ext_resource path="res://World/MainLevel.gd" type="Script" id=4]
 [ext_resource path="res://World/Obstacles/LevelDivider/LevelDivider.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Utils/ProgressiveMusicPlayer/ProgressiveMusicPlayer.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 50, 2000 )
@@ -62,3 +63,6 @@ script = ExtResource( 3 )
 
 [node name="LevelDivider" parent="." instance=ExtResource( 5 )]
 position = Vector2( 24, 0 )
+
+[node name="ProgressiveMusicPlayer" parent="." instance=ExtResource( 6 )]
+LoopLength = 12.77

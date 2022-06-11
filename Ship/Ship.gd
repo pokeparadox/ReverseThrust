@@ -52,14 +52,13 @@ func _physics_process(delta):
 		$ExhaustSound.stop()
 
 	_velocity.y += gravity * delta * 0.01
-	if _velocity.y < highestHeight:
-		highestHeight = _velocity.y
-
 	var _collision = move_and_collide(_velocity)
 	if _collision:
 		ShipExplodes(isExploding)
 		if _collision.collider.has_method("Hit"):
 			_collision.collider.Hit()
+	if position.y < highestHeight:
+		highestHeight = int(position.y)
 
 func ShipExplodes(isExploding : bool) -> void:
 	if not isExploding:
