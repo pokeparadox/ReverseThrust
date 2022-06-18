@@ -26,7 +26,7 @@ position = Vector2( 2, -9 )
 shape = SubResource( 1 )
 
 [node name="Rectangle" parent="LeftWall" instance=ExtResource( 2 )]
-position = Vector2( 40, -35 )
+position = Vector2( 32, -1024 )
 Width = 20.0
 Height = 2000.0
 
@@ -39,7 +39,7 @@ position = Vector2( 8, -9 )
 shape = SubResource( 1 )
 
 [node name="Rectangle" parent="RightWall" instance=ExtResource( 2 )]
-position = Vector2( -32, -36 )
+position = Vector2( -41, -1024 )
 Width = 20.0
 Height = 2000.0
 

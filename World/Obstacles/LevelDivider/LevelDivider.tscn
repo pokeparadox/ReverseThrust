@@ -10,8 +10,7 @@ script = ExtResource( 2 )
 [node name="PositionNextLevel" type="Position2D" parent="."]
 
 [node name="DestructibleBlock" parent="." instance=ExtResource( 1 )]
-NumBlocksHeight = 1
-NumBlocksWidth = 309
+NumBlocks = Vector2( 309, 1 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )

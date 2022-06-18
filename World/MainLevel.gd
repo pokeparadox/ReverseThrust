@@ -33,3 +33,5 @@ func CheckLevelProgression() -> void:
 		GameLevel += 1
 		$RandomWallGen.SetLevelObstacles(GameLevel)
 		$RandomWallGen.position.y = $RandomWallGen.position.y - levelShift
+		#$TestWallGen.SetLevelObstacles(GameLevel)
+		#$TestWallGen.position.y = $TestWallGen.position.y - levelShift

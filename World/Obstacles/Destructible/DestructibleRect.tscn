@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://World/Obstacles/Destructible/Crumble.sfxr" type="AudioStream" id=2]
+[ext_resource path="res://World/Obstacles/Destructible/DestructibleRect.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4, 4 )
+
+[node name="DestructableRect" type="Area2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource( 3 )
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Crumble" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 2 )
+
+[connection signal="body_entered" from="." to="." method="_on_Destructable_body_entered"]
+[connection signal="finished" from="Crumble" to="." method="_on_Crumble_finished"]

@@ -10,9 +10,9 @@ export var Colour = Color.white setget _setColour
 
 
 func _draw():
-	var halfW : float = Width * 0.5
-	var halfH : float = Height * 0.5
-	draw_rect(Rect2(Vector2(-halfW,-halfH), Vector2(Width, Height)), Colour, IsFilled, LineWidth)
+	var dims = Vector2(Width, Height)
+	#var halfVec = dims * 0.5
+	draw_rect(Rect2(Vector2.ZERO, dims), Colour, IsFilled, LineWidth)
 
 func _setIsFilled(value : bool):
 	IsFilled = value

@@ -9,9 +9,12 @@ rotation = 1.5708
 script = ExtResource( 4 )
 
 [node name="ExhaustEmitter" parent="." instance=ExtResource( 1 )]
+position = Vector2( 3.61999e-06, 1 )
 emitting = false
-amount = 32
+amount = 48
 particle_scene = ExtResource( 2 )
-lifetime = 3.0
+lifetime = 2.5
+lifetime_random = 0.2
 impulse = 300.0
-impulse_spread_degrees = 4.0
+impulse_random = 0.3
+impulse_spread_degrees = 4.5
