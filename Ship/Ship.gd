@@ -19,7 +19,7 @@ func _init() -> void:
 func _ready() -> void:
 	_velocity = Vector2.ZERO
 	self.position = screenRes * 0.5
-	highestHeight = int(self.position.y)
+	#highestHeight = int(self.position.y)
 	shipHeading.SetAngle(0)
 	$Exhaust.SetExhaust(false)
 	$Exhaust.visible = false
@@ -80,4 +80,4 @@ func setShipVisible(isVisible : bool) -> void:
 
 func _on_ExplodeSound_finished() -> void:
 	_ready()
-	position.y = highestHeight
+	position.y = highestHeight + 25

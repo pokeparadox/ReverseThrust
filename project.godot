@@ -19,11 +19,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://World/Obstacles/Destructible/Destructible.gd"
 }, {
-"base": "Area2D",
-"class": "DestructibleRect",
-"language": "GDScript",
-"path": "res://World/Obstacles/Destructible/DestructibleRect.gd"
-}, {
 "base": "Node2D",
 "class": "Line",
 "language": "GDScript",
@@ -40,14 +35,14 @@ _global_script_classes=[ {
 "path": "res://Ship/Ship.gd"
 }, {
 "base": "Node2D",
-"class": "ShrinkingDestructible",
-"language": "GDScript",
-"path": "res://World/Obstacles/Destructible/ShrinkingDestructible.gd"
-}, {
-"base": "Node2D",
 "class": "Square",
 "language": "GDScript",
 "path": "res://Shapes/Square.gd"
+}, {
+"base": "Node2D",
+"class": "SubDivRect",
+"language": "GDScript",
+"path": "res://World/Obstacles/Destructible/SubDivRect.gd"
 }, {
 "base": "Node2D",
 "class": "SubDividingDestructible",
@@ -57,12 +52,11 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Brad": "",
 "Destructible": "",
-"DestructibleRect": "",
 "Line": "",
 "Rectangle": "",
 "Ship": "",
-"ShrinkingDestructible": "",
 "Square": "",
+"SubDivRect": "",
 "SubDividingDestructible": ""
 }
 
