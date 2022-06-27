@@ -16,5 +16,5 @@ particle_scene = ExtResource( 2 )
 lifetime = 2.5
 lifetime_random = 0.2
 impulse = 300.0
-impulse_random = 0.3
-impulse_spread_degrees = 4.5
+impulse_random = 0.6
+impulse_spread_degrees = 2.0

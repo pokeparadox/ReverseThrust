@@ -31,6 +31,7 @@ func CheckLevelProgression() -> void:
 		$LevelDivider.Reset()
 		$LevelDivider.position.y = nextDividerHeight
 		GameLevel += 1
+		$Ship/Exhaust.LevelUp(GameLevel)
 		$RandomWallGen.SetLevelObstacles(GameLevel)
 		$RandomWallGen.position.y = $RandomWallGen.position.y - levelShift
 		#$TestWallGen.SetLevelObstacles(GameLevel)

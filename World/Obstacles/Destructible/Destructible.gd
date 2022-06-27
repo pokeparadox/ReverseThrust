@@ -1,13 +1,16 @@
 extends Area2D
 class_name Destructible
 
-signal DestructibleHit(destructible, body)
+signal DestructibleHit(destructible)
+
+var IsColliding : bool = false
 
 const MinHalfLength : int = 4
 
 func Hit() -> void:
 	if not $Crumble.is_playing():
 		$Crumble.play()
+
 func _on_Crumble_finished() -> void:
 	hide()
 	queue_free()
@@ -28,12 +31,14 @@ func SetLength(length : int) -> void:
 	$Square.Length = length
 
 func _on_Destructable_body_entered(body: Node) -> void:
-	if body.has_method("ShipExplodes"):
-		body.ShipExplodes(false)
-	if body.has_method("Hit"):
-		body.Hit()
+	if not IsColliding:
+		IsColliding = true
+		if body.has_method("ShipExplodes"):
+			body.ShipExplodes(false)
+		if body.has_method("Hit"):
+			body.Hit()
 
-	if GetHalfLength() <= MinHalfLength:
-		Hit()
-	else:
-		emit_signal("DestructibleHit", self, body)
+		if GetHalfLength() <= MinHalfLength:
+			Hit()
+		else:
+			emit_signal("DestructibleHit", self)

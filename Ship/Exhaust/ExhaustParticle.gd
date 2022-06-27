@@ -5,3 +5,7 @@ func _ready() -> void:
 
 func Hit():
 	queue_free()
+
+
+func _on_ExhaustParticle_body_entered(_body: Node) -> void:
+	queue_free()
