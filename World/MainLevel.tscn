@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Ship/Ship.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Shapes/Rectangle.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://World/Obstacles/LevelDivider/LevelDivider.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Utils/ProgressiveMusicPlayer/ProgressiveMusicPlayer.tscn" type="PackedScene" id=6]
 [ext_resource path="res://World/Obstacles/Destructible/RandomWallGen.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Ship/Fuel/FuelBar.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 50, 2000 )
@@ -55,12 +56,16 @@ shape = SubResource( 2 )
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2( 640, 360 )
 current = true
-process_mode = 0
 limit_left = 0
 limit_right = 1280
 limit_bottom = 720
 editor_draw_limits = true
 script = ExtResource( 3 )
+
+[node name="FuelBar" parent="Camera" instance=ExtResource( 8 )]
+position = Vector2( -42, 143 )
+BackgroundColour = Color( 1, 1, 1, 0.501961 )
+ForegroundColour = Color( 1, 0, 0, 0.501961 )
 
 [node name="LevelDivider" parent="." instance=ExtResource( 5 )]
 position = Vector2( 24, 0 )
@@ -69,3 +74,5 @@ position = Vector2( 24, 0 )
 ApproxLoopLength = 12.746
 
 [node name="RandomWallGen" parent="." instance=ExtResource( 7 )]
+
+[connection signal="FuelLevelChanged" from="Ship" to="Camera/FuelBar" method="_on_Ship_FuelLevelChanged"]

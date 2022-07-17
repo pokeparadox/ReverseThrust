@@ -35,9 +35,10 @@ func SkipLoop() -> void:
 		var newPos : float = position + ExactLoopLength
 		if newPos > p.get_stream().get_length():
 			return
-		p.play(position + ExactLoopLength)
-		LoopStart = LoopOffsetCount * ExactLoopLength
-		LoopEnd = LoopStart + ExactLoopLength
+		#p.play(position + ExactLoopLength)
+		var newLoopStart : float = LoopOffsetCount * ExactLoopLength
+		#LoopStart = LoopOffsetCount * ExactLoopLength
+		LoopEnd = newLoopStart + ExactLoopLength
 	else:
 		Play()
 	if ExactLoopLength > 0:
@@ -48,5 +49,8 @@ func _process(_delta: float) -> void:
 		var p = $Track1
 		var position : float = p.get_playback_position()
 		if position > LoopEnd:
+			LoopStart = LoopOffsetCount * ExactLoopLength
 			p.play(LoopStart)
+			if LoopStart == LoopEnd:
+				LoopEnd = LoopEnd + ExactLoopLength
 

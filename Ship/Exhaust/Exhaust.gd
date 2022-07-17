@@ -1,9 +1,9 @@
 extends Node2D
 
 const DefaultParticles : int = 20
-const MaxParticles : int = 148
+const MaxParticles : int = 256
 const DefaultSpread : float = 2.0
-const MaxSpread : float = 30.0
+const MaxSpread : float = 45.0
 
 const LevelScaler : float = 1.05
 
