@@ -17,6 +17,6 @@ Reverse Thrust is inspired heavily on the game Spout! by Kuni.
 ## WIP Screenshots
 ![image](https://user-images.githubusercontent.com/816975/209713890-e4050c61-e830-4866-85a1-754cd664987a.png)
 
-## AAddons used with thanks
+## Addons used with thanks
 - GDFXR - https://github.com/timothyqiu/gdfxr
 - RigidBodyParticles2D - https://github.com/danboo/godot-RigidBodyParticles2D
