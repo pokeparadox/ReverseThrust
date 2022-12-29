@@ -37,10 +37,10 @@ onready var translator := $PluginTranslator
 func _ready():
 	if not plugin:
 		return # Running in the edited scene instead of from Plugin
-
+	
 	for child in get_children():
 		_hook_plugin(child)
-
+	
 	var popup := extra_button.get_popup()
 	popup.add_item(translator.tr("Save As..."), ExtraOption.SAVE_AS)
 	popup.add_separator()
@@ -48,7 +48,7 @@ func _ready():
 	popup.add_item(translator.tr("Paste"), ExtraOption.PASTE)
 	popup.add_separator(translator.tr("Recently Generated"))
 	popup.connect("id_pressed", self, "_on_Extra_id_pressed")
-
+	
 	_category_names = {
 		SFXRConfig.Category.PICKUP_COIN: translator.tr("Pickup/Coin"),
 		SFXRConfig.Category.LASER_SHOOT: translator.tr("Laser/Shoot"),
@@ -58,25 +58,25 @@ func _ready():
 		SFXRConfig.Category.JUMP: translator.tr("Jump"),
 		SFXRConfig.Category.BLIP_SELECT: translator.tr("Blip/Select"),
 	}
-
+	
 	var params := find_node("Params") as Container
 	for category in params.get_children():
 		for control in category.get_children():
 			_param_map[control.parameter] = control
 			control.connect("param_changed", self, "_on_param_changed")
 			control.connect("param_reset", self, "_on_param_reset")
-
+	
 	_set_editing_file("")
 
 
 func _notification(what: int):
 	if not plugin:
 		return # Running in the edited scene instead of from Plugin
-
+	
 	match what:
 		NOTIFICATION_ENTER_TREE, NOTIFICATION_THEME_CHANGED:
 			find_node("ScrollContainer").add_stylebox_override("bg", get_stylebox("bg", "Tree"))
-
+			
 			if extra_button:
 				var popup = extra_button.get_popup()
 				popup.set_item_icon(popup.get_item_index(ExtraOption.COPY), get_icon("ActionCopy", "EditorIcons"))
@@ -106,11 +106,11 @@ func _push_recent(title: String) -> void:
 		recent = RecentEntry.new()
 	else:
 		recent = _config_recents.pop_back()
-
+	
 	_recents_id += 1
 	recent.title = "#%d %s" % [_recents_id, title]
 	recent.config.copy_from(_config)
-
+	
 	_config_recents.push_front(recent)
 
 
@@ -167,7 +167,7 @@ func _set_editing_file(path: String) -> int: # Error
 			_popup_message(translator.tr("'%s' is not a valid SFXR file.") % path)
 			return err
 		audio_player.stream = load(path)
-
+	
 	_path = path
 	_reset_defaults()
 	return OK
@@ -175,7 +175,7 @@ func _set_editing_file(path: String) -> int: # Error
 
 func _set_modified(value: bool) -> void:
 	_modified = value
-
+	
 	var has_file := not _path.empty()
 	var base = _path if has_file else translator.tr("Unsaved sound")
 	if _modified:
@@ -198,11 +198,11 @@ func _sync_ui() -> void:
 func _on_param_changed(name, value):
 	if _syncing_ui:
 		return
-
+	
 	_config.set(name, value)
-
+	
 	_param_map[name].set_resetable(value != _config_defaults.get(name))
-
+	
 	_set_modified(not _config.is_equal(_config_defaults))
 	audio_player.stream = null
 
@@ -210,13 +210,13 @@ func _on_param_changed(name, value):
 func _on_param_reset(name):
 	var value = _config_defaults.get(name)
 	_config.set(name, value)
-
+	
 	_syncing_ui = true
 	var control = _param_map[name]
 	control.set_value(value)
 	control.set_resetable(false)
 	_syncing_ui = false
-
+	
 	_set_modified(not _config.is_equal(_config_defaults))
 	audio_player.stream = null
 
@@ -234,7 +234,7 @@ func _on_Randomize_pressed(category: int):
 	else:
 		_config.randomize_in_category(category)
 		_push_recent(_category_names.get(category, "Unknown"))
-
+	
 	_set_modified(true)
 	_sync_ui()
 	_on_Play_pressed(true)
@@ -242,7 +242,7 @@ func _on_Randomize_pressed(category: int):
 
 func _on_Mutate_pressed():
 	_config.mutate()
-
+	
 	_push_recent(translator.tr("Mutate"))
 	_set_modified(true)
 	_sync_ui()
@@ -296,14 +296,14 @@ func _on_Load_pressed():
 func _on_Extra_about_to_show():
 	var popup := extra_button.get_popup()
 	popup.set_item_disabled(popup.get_item_index(ExtraOption.PASTE), _config_clipboard == null)
-
+	
 	# Rebuild recents menu everytime :)
 	var first_recent_index := popup.get_item_index(ExtraOption.RECENT)
 	if first_recent_index != -1:
 		var count := popup.get_item_count()
 		for i in count - first_recent_index:
 			popup.remove_item(count - 1 - i)
-
+	
 	if _config_recents.empty():
 		popup.add_item(translator.tr("None"), ExtraOption.RECENT)
 		popup.set_item_disabled(popup.get_item_index(ExtraOption.RECENT), true)
@@ -316,15 +316,15 @@ func _on_Extra_id_pressed(id: int) -> void:
 	match id:
 		ExtraOption.SAVE_AS:
 			_popup_file_dialog(EditorFileDialog.MODE_SAVE_FILE, "_on_SaveAsDialog_confirmed")
-
+		
 		ExtraOption.COPY:
 			if not _config_clipboard:
 				_config_clipboard = SFXRConfig.new()
 			_config_clipboard.copy_from(_config)
-
+		
 		ExtraOption.PASTE:
 			_restore_from_config(_config_clipboard)
-
+		
 		_:
 			var i := id - ExtraOption.RECENT as int
 			if i < 0 or _config_recents.size() <= i:
