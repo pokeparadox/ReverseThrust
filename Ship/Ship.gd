@@ -23,7 +23,7 @@ func _init() -> void:
 func _ready() -> void:
 	_velocity = Vector2.ZERO
 	self.position = screenRes * 0.5
-	shipHeading.SetAngle(0)
+	shipHeading.set_angle(0)
 	$Exhaust.SetExhaust(false)
 	$Exhaust.visible = false
 	$Explosion.Explode(false)
@@ -36,11 +36,11 @@ func _physics_process(delta):
 		return
 
 	var rot = -(Input.get_action_strength("RotateLeft") - Input.get_action_strength("RotateRight"))
-	shipHeading = shipHeading.AddAngle(rot * delta * ROTATE_SPEED)
-	SetShipThrusterAngle(shipHeading.GetAngleDeg())
+	shipHeading = shipHeading.add_angle(rot * delta * ROTATE_SPEED)
+	SetShipThrusterAngle(shipHeading.get_angle_deg())
 
 	if Input.is_action_pressed("Thrust"):
-		var vec : Vector2 = BradLut.BradToVector2d(shipHeading)
+		var vec : Vector2 = BradLut.brad_to_vector_2d(shipHeading)
 		if _velocity.length_squared() < MAX_THRUST_SQ:
 			vec = vec * delta * THRUST_SPEED
 			vec.y = -vec.y

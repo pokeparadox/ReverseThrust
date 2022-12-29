@@ -1,92 +1,121 @@
+class_name Brad
 extends Node
 
-class_name Brad
+# A B-Rad is a measure of angles, traditionally used for 8bit retro games programming to take advantage of the natural wrapping of 
+# an unsigned byte and avoid float calculations 
+# This class aims to emulate that behaviour to aid in porting over code that may use Brads.
+# Class by PokeParadox ported from original C++ in Penjin
 
-const MAX_VALUE : int = 255
+const MAX_VALUE: int = 255
 
-var angle : int = 0
+var angle: int = 0 setget set_angle
 
-func Brad(aBrad: int):
-	SetAngle(aBrad)
+func brad(brad_angle: int):
+	set_angle(brad_angle)
 	return self
 
-func BradDeg(deg: float):
-	SetAngleDeg(deg)
+
+func brad_deg(deg: float):
+	set_angle_deg(deg)
 	return self
 
-func BradRad(rad: float):
-	SetAngleRad(rad)
+
+func brad_rad(rad: float):
+	set_angle_rad(rad)
 	return self
 
-func SetAngle(aBrad : int):
-	angle = wrapi(aBrad, 0, MAX_VALUE)
 
-func SetAngleDeg(deg: float):
+func set_angle(brad_angle: int):
+	angle = wrapi(brad_angle, 0, MAX_VALUE)
+
+
+func set_angle_deg(deg: float):
 	deg = wrapf(deg, 0, 359)
-	SetAngle(int(deg * 32 * 0.02222222))
+	set_angle(int(deg * 32 * 0.02222222))
 
-func SetAngleRad(rad: float):
-	SetAngleDeg(rad * PI * 0.005555556)
 
-func GetAngle() -> int:
+func set_angle_rad(rad: float):
+	set_angle_deg(rad * PI * 0.005555556)
+
+
+func get_angle() -> int:
 	return angle
 
-func GetAngleDeg() -> float:
+
+func get_angle_deg() -> float:
 	return angle * 45 * 0.03125
 
-func GetAngleRad() -> float:
-	return  deg2rad(GetAngleDeg())
 
-func Equals(other: Brad) -> bool:
+func get_angle_rad() -> float:
+	return deg2rad(get_angle_deg())
+
+
+func equals(other: Brad) -> bool:
 	return angle == other.angle
 
-func GreaterThan(other: Brad) -> bool:
+
+func greater_than(other: Brad) -> bool:
 	return angle > other.angle
 
-func LessThan(other: Brad) -> bool:
+
+func less_than(other: Brad) -> bool:
 	return angle < other.angle
 
-func GreaterThanOrEqual(other: Brad) -> bool:
+
+func greater_than_or_equal(other: Brad) -> bool:
 	return angle >= other.angle
 
-func LessThanOrEqual(other: Brad) -> bool:
+
+func less_than_or_equal(other: Brad) -> bool:
 	return angle <= other.angle
 
-func Add(other: Brad) -> Brad:
-	SetAngle(angle + other.GetAngle())
+
+func add(other: Brad) -> Brad:
+	set_angle(angle + other.get_angle())
 	return self
 
-func AddAngle(aBrad: int) -> Brad:
-	return Brad(angle + aBrad)
 
-func AddAngleDeg(deg: float) -> Brad:
-	return BradDeg(GetAngleDeg() + deg)
+func add_angle(brad_angle: int) -> Brad:
+	return brad(angle + brad_angle)
 
-func AddAngleRad(rad: float) -> Brad:
-	return BradRad(GetAngleRad() + rad)
 
-func Subtract(other: Brad) -> Brad:
-	return Brad(angle - other.angle)
+func add_angle_deg(deg: float) -> Brad:
+	return brad_deg(get_angle_deg() + deg)
 
-func SubtractAngle(aBrad: int) -> Brad:
-	return Brad(angle - aBrad)
 
-func SubtractAngleDeg(deg: float) -> Brad:
-	return BradDeg(GetAngleDeg() - deg)
+func add_angle_rad(rad: float) -> Brad:
+	return brad_rad(get_angle_rad() + rad)
 
-func SubtractAngleRad(rad: float) -> Brad:
-	return BradRad(GetAngleRad() - rad)
 
-func Increment() -> void:
-	angle+=1
+func subtract(other: Brad) -> Brad:
+	return brad(angle - other.angle)
 
-func Decrement() -> void:
-	angle-=1
 
-func IncrementAssign() -> Brad:
-	Increment()
+func subtract_angle(brad_angle: int) -> Brad:
+	return brad(angle - brad_angle)
+
+
+func subtract_angle_deg(deg: float) -> Brad:
+	return brad_deg(get_angle_deg() - deg)
+
+
+func subtract_angle_rad(rad: float) -> Brad:
+	return brad_rad(get_angle_rad() - rad)
+
+
+func increment() -> void:
+	angle += 1
+
+
+func decrement() -> void:
+	angle -= 1
+
+
+func increment_assign() -> Brad:
+	increment()
 	return self
 
-func DecrementAssign() -> Brad:
-	Decrement()
+
+func decrement_assign() -> Brad:
+	decrement()
 	return self

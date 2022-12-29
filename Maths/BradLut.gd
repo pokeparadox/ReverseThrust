@@ -1,37 +1,44 @@
 extends Node
 
-var SinCosLookup = {}
+# Lookup table for sin/cos and for their direction vectors using Brads
+# We only have to store a subset of values due to mirroring and the reduction from 360 degres to 256 Brads.
+# Ported from original C++ in Penjin by PokeParadox
+var sin_cos_lookup = {}
 var Brad = load("Maths/Brad.gd")
+
 
 func _init() -> void:
 	for i in range(0, 128):
 		var brad = Brad.new()
-		brad.Brad(i)
-		SinCosLookup[i] = sin(deg2rad(brad.GetAngleDeg()))
+		brad.brad(i)
+		sin_cos_lookup[i] = sin(deg2rad(brad.get_angle_deg()))
 
-func SinI(a : int) -> float:
+
+func sin_i(a : int) -> float:
 	a = wrapi(a,0,255)
 	if a > 127:
 		a -= 128
-		return -SinCosLookup[a]
-
-	return SinCosLookup[a]
-
-func CosI(a : int) -> float:
-	return SinI(a + 64)
+		return -sin_cos_lookup[a]
+	return sin_cos_lookup[a]
 
 
-func Sin(brad : Brad) -> float:
-	return SinI(brad.GetAngle())
+func cos_i(a : int) -> float:
+	return sin_i(a + 64)
 
 
-func Cos(brad : Brad) -> float:
-	return CosI(brad.GetAngle())
+func sin(brad : Brad) -> float:
+	return sin_i(brad.get_angle())
 
-var BradToVectorLookup = {}
 
-func BradToVector2d(aBrad: Brad) -> Vector2:
-	var a : int = aBrad.GetAngle()
-	if not BradToVectorLookup.has(a):
-		BradToVectorLookup[a] = Vector2(SinI(a), CosI(a))
-	return BradToVectorLookup[a]
+func cos(brad : Brad) -> float:
+	return cos_i(brad.get_angle())
+
+
+var brad_to_vector_lookup = {}
+
+func brad_to_vector_2d(brad_angle: Brad) -> Vector2:
+	var a : int = brad_angle.get_angle()
+	if not brad_to_vector_lookup.has(a):
+		brad_to_vector_lookup[a] = Vector2(sin_i(a), cos_i(a))
+	return brad_to_vector_lookup[a]
+
