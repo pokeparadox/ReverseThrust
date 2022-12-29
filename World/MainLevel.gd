@@ -27,7 +27,7 @@ func CheckLevelProgression() -> void:
 	if $Ship.position.y < $LevelDivider.position.y:
 		$ProgressiveMusicPlayer.SkipLoop()
 		var nextDividerHeight : int = $LevelDivider.position.y - levelShift
-		$LevelDivider.Reset()
+		$LevelDivider.reset()
 		$LevelDivider.position.y = nextDividerHeight
 		GameLevel += 1
 		$Ship/Exhaust.LevelUp(GameLevel)
@@ -35,5 +35,3 @@ func CheckLevelProgression() -> void:
 		$Ship.Fuel = min($Ship.Fuel, 100.0)
 		$RandomWallGen.SetLevelObstacles(GameLevel)
 		$RandomWallGen.position.y = $RandomWallGen.position.y - levelShift
-		#$TestWallGen.SetLevelObstacles(GameLevel)
-		#$TestWallGen.position.y = $TestWallGen.position.y - levelShift

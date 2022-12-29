@@ -16,7 +16,7 @@ func SetLevelObstacles(level):
 	# Generate the obstacle's position.
 	obstacle.position.x = float(Random.NextIntRange(SpacerOffset, int(screenRes.x -SpacerOffset)))
 	obstacle.position.y = float(Random.NextIntRange(SpacerOffset, int(screenRes.y -SpacerOffset)))
-	obstacle.Setup(Random.NextIntRange(SpacerOffset, int(scaler * level + SpacerOffset)))
+	obstacle.setup(Random.NextIntRange(SpacerOffset, int(scaler * level + SpacerOffset)), Color.white)
 
 	# Add the obstacle to the scene.
 	add_child(obstacle)
