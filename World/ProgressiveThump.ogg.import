@@ -11,5 +11,5 @@ dest_files=[ "res://.import/ProgressiveThump.ogg-aa3671c673a596ec08b94befadcd1ea
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
