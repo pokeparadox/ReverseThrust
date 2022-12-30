@@ -3,6 +3,7 @@ extends Node
 # Lookup table for sin/cos and for their direction vectors using Brads
 # We only have to store a subset of values due to mirroring and the reduction from 360 degres to 256 Brads.
 # Ported from original C++ in Penjin by PokeParadox
+
 var sin_cos_lookup = {}
 var Brad = load("Maths/Brad.gd")
 

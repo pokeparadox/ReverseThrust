@@ -1,5 +1,6 @@
 class_name Ship
 extends KinematicBody2D
+
 var Brad = load("Maths/Brad.gd")
 
 signal FuelLevelChanged(fuelLevel)
