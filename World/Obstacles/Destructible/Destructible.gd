@@ -35,8 +35,8 @@ func _on_Destructable_body_entered(body: Node) -> void:
 		IsColliding = true
 		if body.has_method("ShipExplodes"):
 			body.ShipExplodes(false)
-		if body.has_method("Hit"):
-			body.Hit()
+		if body.has_method("hit"):
+			body.hit()
 
 		if GetHalfLength() <= MinHalfLength:
 			Hit()

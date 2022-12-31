@@ -25,7 +25,7 @@ func _ready() -> void:
 	_velocity = Vector2.ZERO
 	self.position = screenRes * 0.5
 	shipHeading.set_angle(0)
-	$Exhaust.SetExhaust(false)
+	$Exhaust.set_exhaust(false)
 	$Exhaust.visible = false
 	$Explosion.Explode(false)
 	setShipVisible(true)
@@ -49,12 +49,12 @@ func _physics_process(delta):
 		if Fuel >= 0:
 			Fuel -= delta * 3
 			emit_signal("FuelLevelChanged", Fuel)
-		$Exhaust.SetExhaust(true)
+		$Exhaust.set_exhaust(true)
 		if not $ExhaustSound.is_playing():
 			$ExhaustSound.play()
 	else:
 		_velocity *= 0.99
-		$Exhaust.SetExhaust(false)
+		$Exhaust.set_exhaust(false)
 		$ExhaustSound.stop()
 
 	_velocity.y += gravity * delta * 0.01
@@ -66,16 +66,17 @@ func _physics_process(delta):
 	if position.y < highestHeight:
 		highestHeight = int(position.y)
 
-func ShipExplodes(isExploding : bool) -> void:
-	if not isExploding:
+func ShipExplodes(exploding : bool) -> void:
+	if not exploding:
 		setShipVisible(false)
 		$ExplodeSound.play()
+		$Exhaust.reset()
 
 	$Explosion.Explode(true)
 
 func SetShipThrusterAngle(thrust: float):
 	$Thruster.rotation_degrees = thrust
-	$Exhaust.SetAngle(thrust)
+	$Exhaust.set_angle(thrust)
 
 func setShipVisible(isVisible : bool) -> void:
 	$Square.visible = isVisible

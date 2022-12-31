@@ -6,6 +6,9 @@ onready var FloorStartLastHeight : int = $DeathZone.position.y
 onready var FloorOffset : int = CameraStartHeight - FloorStartLastHeight
 var GameLevel : int = 0
 
+func _enter_tree():
+	$Ship/Exhaust.reset()
+
 func _physics_process(_delta: float) -> void:
 	ProcessWallsAndFloor()
 	CheckLevelProgression()
@@ -30,7 +33,7 @@ func CheckLevelProgression() -> void:
 		$LevelDivider.reset()
 		$LevelDivider.position.y = nextDividerHeight
 		GameLevel += 1
-		$Ship/Exhaust.LevelUp(GameLevel)
+		$Ship/Exhaust.level_up()
 		$Ship.Fuel += max(float(100.0 / GameLevel), 5)
 		$Ship.Fuel = min($Ship.Fuel, 100.0)
 		$RandomWallGen.SetLevelObstacles(GameLevel)

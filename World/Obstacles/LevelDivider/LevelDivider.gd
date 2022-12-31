@@ -1,10 +1,12 @@
 extends Node2D
 
-export var dimensions : Vector2 = Vector2(Resolution.get_width()-38,8)
+var dimensions : Vector2 = Vector2(Resolution.get_width(),32)
+
 
 func _enter_tree():
 	$SubDivRect.colour = Color.aquamarine
-	$SubDivRect.rect_dims = dimensions
+	$SubDivRect.setup(dimensions)
+
 
 func reset() -> void:
 	$AudioStreamPlayer.play()

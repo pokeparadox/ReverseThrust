@@ -1,25 +1,31 @@
 extends Node2D
 
-const DefaultParticles : int = 20
-const MaxParticles : int = 256
-const DefaultSpread : float = 2.0
-const MaxSpread : float = 45.0
+export var default_particles : int = 30
+export var max_particles : int = 256
+export var default_spread : float = 2.0
+export var max_spread : float = 30.0
+export var level_scaler : float = 0.8
 
-const LevelScaler : float = 1.05
+var level : int = 0
 
-func Reset() -> void:
-	LevelUp(0)
-
-func LevelUp(level : int):
-	$ExhaustEmitter.amount = min(max(DefaultParticles, DefaultParticles * level * LevelScaler), MaxParticles)
-	$ExhaustEmitter.impulse_spread_degrees = min(max(DefaultSpread, DefaultSpread + level), MaxSpread)
-	$ExhaustEmitter.impulse_random = min(0.9, 0.3 + (LevelScaler/20))
+func reset() -> void:
+	_set_level(0)
 
 
+func level_up() -> void:
+	_set_level(level + 1)
 
 
-func SetExhaust(exhaust : bool):
+func set_exhaust(exhaust : bool) -> void:
 	$ExhaustEmitter.set_emitting(exhaust)
 
-func SetAngle(angleDeg : int):
+
+func set_angle(angleDeg : int) -> void:
 	$ExhaustEmitter.impulse_angle_degrees = angleDeg
+
+
+func _set_level(l : int) -> void:
+	level = l
+	$ExhaustEmitter.amount = min(max(default_particles, default_particles * level * level_scaler), max_particles)
+	$ExhaustEmitter.impulse_spread_degrees = min(max(default_spread, default_spread + level), max_spread)
+	$ExhaustEmitter.impulse_random = min(0.9, 0.3 + (level_scaler/20))	

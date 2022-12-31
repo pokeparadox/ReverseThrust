@@ -3,5 +3,7 @@ extends RigidBody2D
 func _ready() -> void:
 	$Animation.play("ParticleFade")
 
-func Hit():
+
+func hit():
 	queue_free()
+
