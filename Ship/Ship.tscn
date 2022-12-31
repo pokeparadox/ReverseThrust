@@ -17,9 +17,9 @@ script = ExtResource( 3 )
 
 [node name="Square" parent="." instance=ExtResource( 2 )]
 position = Vector2( -5, -5 )
-IsFilled = false
-LineWidth = 2.0
-Length = 10.0
+is_filled = false
+line_width = 2.0
+length = 10.0
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2( -5, -5 )
@@ -27,9 +27,9 @@ shape = SubResource( 1 )
 
 [node name="Thruster" parent="." instance=ExtResource( 1 )]
 position = Vector2( -5, -5 )
-LineWidth = 2.0
-Length = 16.0
-Colour = Color( 0.0666667, 0.835294, 0.184314, 1 )
+line_width = 2.0
+length = 25.0
+colour = Color( 0, 0.764706, 0.247059, 1 )
 
 [node name="Exhaust" parent="." instance=ExtResource( 4 )]
 position = Vector2( -5, -5 )

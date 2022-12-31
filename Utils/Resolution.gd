@@ -1,12 +1,13 @@
-
 extends Node
 
-func GetWidth():
+func get_width():
 	return OS.get_window_size().x
 
-func GetHeight():
+
+func get_height():
 	return OS.get_window_size().y
 
-func GetResolution():
+
+func get_resolution():
 	return OS.get_window_size()
 

@@ -28,8 +28,9 @@ shape = SubResource( 1 )
 
 [node name="Rectangle" parent="LeftWall" instance=ExtResource( 2 )]
 position = Vector2( 32, -1024 )
-Width = 20.0
-Height = 2000.0
+width = 20.0
+height = 2000.0
+colour = Color( 0.345098, 0.705882, 0.968627, 1 )
 
 [node name="RightWall" type="StaticBody2D" parent="." groups=["Walls"]]
 position = Vector2( 1301, 407 )
@@ -41,8 +42,9 @@ shape = SubResource( 1 )
 
 [node name="Rectangle" parent="RightWall" instance=ExtResource( 2 )]
 position = Vector2( -41, -1024 )
-Width = 20.0
-Height = 2000.0
+width = 20.0
+height = 2000.0
+colour = Color( 0.345098, 0.705882, 0.968627, 1 )
 
 [node name="DeathZone" type="StaticBody2D" parent="."]
 position = Vector2( 641, 845 )

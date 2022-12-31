@@ -1,30 +1,38 @@
 extends Node
+
 var rand = RandomNumberGenerator.new()
-var MaxValue = 1
-var MinValue = 0
+var max_value = 1
+var min_value = 0
 
-func SetLimits(minV,  maxV):
-	MaxValue = maxV
-	MinValue = minV
+func set_limits(min_v,  max_v) -> void:
+	max_value = max_v
+	min_value = min_v
 
-func NextFloat() -> float:
-	return rand_range(MinValue, MaxValue)
 
-func NextInt() -> int:
-	return rand.randi_range(MinValue, MaxValue)
+func next_float() -> float:
+	return rand_range(min_value, max_value)
 
-func NextFloatRange(minV, maxV) -> float:
-	return rand_range(minV, maxV)
 
-func NextIntRange(minV, maxV) -> int:
-	return rand.randi_range(minV, maxV)
+func next_int() -> int:
+	return rand.randi_range(min_value, max_value)
 
-func NextBool() -> bool:
+
+func next_float_range(min_v, max_v) -> float:
+	return rand_range(min_v, max_v)
+
+
+func next_int_range(min_v, max_v) -> int:
+	return rand.randi_range(min_v, max_v)
+
+
+func next_bool() -> bool:
 	if rand.randi_range(0, 1) == 1:
 		return true
 	else:
 		return false
 
+
 func _ready():
 	randomize()
 	rand.randomize()
+

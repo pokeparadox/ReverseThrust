@@ -6,7 +6,7 @@ var Brad = load("Maths/Brad.gd")
 signal FuelLevelChanged(fuelLevel)
 
 onready var gravity = ProjectSettings.get("physics/2d/default_gravity")
-onready var screenRes : Vector2 = Resolution.GetResolution()
+onready var screenRes : Vector2 = Resolution.get_resolution()
 
 var shipHeading : Brad
 const ROTATE_SPEED : int = 200
@@ -86,7 +86,7 @@ func setShipVisible(isVisible : bool) -> void:
 
 func _on_ExplodeSound_finished() -> void:
 	_ready()
-	position.y = highestHeight + 25
+	position.y = highestHeight + 50
 
 
 func _on_FuelBar_FuelLevelChanged() -> void:

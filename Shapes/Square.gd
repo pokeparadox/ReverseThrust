@@ -1,31 +1,33 @@
-extends Node2D
 tool
 class_name Square
+extends Node2D
 
-export var IsFilled : bool = true setget _setIsFilled
-export var LineWidth : float = 1.0 setget _setLineWidth
-export var Length : float = 4.0 setget _setLength
-export var Colour = Color.white setget _setColour
+export var is_filled : bool = true setget _set_is_filled
+export var line_width : float = 1.0 setget _set_line_width
+export var length : float = 4.0 setget _set_length
+export var colour = Color.white setget _set_colour
+
+func _draw() -> void:
+	var half : float = length * 0.5
+	draw_rect(Rect2(Vector2(-half,-half), Vector2(length, length)), colour, is_filled, line_width)
 
 
-func _draw():
-	var half : float = Length * 0.5
-	draw_rect(Rect2(Vector2(-half,-half), Vector2(Length, Length)), Colour, IsFilled, LineWidth)
-
-
-func _setIsFilled(value : bool):
-	IsFilled = value
+func _set_is_filled(value : bool) -> void:
+	is_filled = value
 	update()
 
-func _setLineWidth(value : float):
-	LineWidth = value
+
+func _set_line_width(value : float) -> void:
+	line_width = value
 	update()
 
-func _setLength(value : float):
-	Length = value
+
+func _set_length(value : float) -> void:
+	length = value
 	update()
 
-func _setColour(value : Color):
-	Colour = value
+
+func _set_colour(value : Color) -> void:
+	colour = value
 	update()
 

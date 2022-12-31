@@ -16,7 +16,7 @@ func _on_Crumble_finished() -> void:
 	queue_free()
 
 func SetColour(colour : Color) -> void:
-	$Square.Colour = colour
+	$Square.colour = colour
 
 func GetLength() -> int:
 	return GetHalfLength() * 2
@@ -28,7 +28,7 @@ func SetLength(length : int) -> void:
 	var shape = RectangleShape2D.new()
 	shape.set_extents(Vector2(length, length)*0.5)
 	$CollisionShape2D.shape = shape
-	$Square.Length = length
+	$Square.length = length
 
 func _on_Destructable_body_entered(body: Node) -> void:
 	if not IsColliding:

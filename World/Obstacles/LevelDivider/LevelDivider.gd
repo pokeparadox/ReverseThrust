@@ -1,6 +1,6 @@
 extends Node2D
 
-export var dimensions : Vector2 = Vector2(Resolution.GetWidth()-38,8)
+export var dimensions : Vector2 = Vector2(Resolution.get_width()-38,8)
 
 func _enter_tree():
 	$SubDivRect.colour = Color.aquamarine
