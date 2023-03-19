@@ -1,47 +1,49 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=9 format=3 uid="uid://bkfanth2d48as"]
 
-[ext_resource path="res://Shapes/Line.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Shapes/Square.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Ship/Ship.gd" type="Script" id=3]
-[ext_resource path="res://Ship/Exhaust/Exhaust.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Ship/Explode.sfxr" type="AudioStream" id=5]
-[ext_resource path="res://Ship/Exhaust/Thrust.sfxr" type="AudioStream" id=6]
-[ext_resource path="res://Ship/Explosion/Explosion.tscn" type="PackedScene" id=7]
+[ext_resource type="PackedScene" path="res://Shapes/Line.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://Shapes/Square.tscn" id="2"]
+[ext_resource type="Script" path="res://Ship/Ship.gd" id="3"]
+[ext_resource type="PackedScene" uid="uid://cpvlq7tmfapy7" path="res://Ship/Exhaust/Exhaust.tscn" id="4"]
+[ext_resource type="AudioStream" uid="uid://drfy4u4kmnqu5" path="res://Ship/Explode.sfxr" id="5"]
+[ext_resource type="AudioStream" uid="uid://d2d3c51kef8wi" path="res://Ship/Exhaust/Thrust.sfxr" id="6"]
+[ext_resource type="PackedScene" uid="uid://b8a7h7ljm8rc4" path="res://Ship/Explosion/Explosion.tscn" id="7"]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 6, 6 )
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(6, 6)
 
-[node name="Ship" type="KinematicBody2D"]
+[node name="Ship" type="CharacterBody2D"]
 collision_mask = 60
-script = ExtResource( 3 )
+motion_mode = 1
+script = ExtResource("3")
 
-[node name="Square" parent="." instance=ExtResource( 2 )]
-position = Vector2( -5, -5 )
+[node name="Square" parent="." instance=ExtResource("2")]
+position = Vector2(-5, -5)
 is_filled = false
 line_width = 2.0
 length = 10.0
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2( -5, -5 )
-shape = SubResource( 1 )
+position = Vector2(-5, -5)
+shape = SubResource("1")
 
-[node name="Thruster" parent="." instance=ExtResource( 1 )]
-position = Vector2( -5, -5 )
+[node name="Thruster" parent="." instance=ExtResource("1")]
+position = Vector2(-5, -5)
 line_width = 2.0
 length = 25.0
-colour = Color( 0, 0.764706, 0.247059, 1 )
+colour = Color(0, 0.764706, 0.247059, 1)
 
-[node name="Exhaust" parent="." instance=ExtResource( 4 )]
-position = Vector2( -5, -5 )
+[node name="Exhaust" parent="." instance=ExtResource("4")]
+position = Vector2(-5, -5)
 
 [node name="ExhaustSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 6 )
+stream = ExtResource("6")
 volume_db = 6.118
 pitch_scale = 0.01
 
-[node name="Explosion" parent="." instance=ExtResource( 7 )]
+[node name="Explosion" parent="." instance=ExtResource("7")]
+position = Vector2(-5, -4)
 
 [node name="ExplodeSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 5 )
+stream = ExtResource("5")
 
 [connection signal="finished" from="ExplodeSound" to="." method="_on_ExplodeSound_finished"]

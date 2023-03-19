@@ -6,64 +6,13 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=4
-
-_global_script_classes=[ {
-"base": "Node",
-"class": "Brad",
-"language": "GDScript",
-"path": "res://Maths/Brad.gd"
-}, {
-"base": "Area2D",
-"class": "Destructible",
-"language": "GDScript",
-"path": "res://World/Obstacles/Destructible/Destructible.gd"
-}, {
-"base": "Node2D",
-"class": "Line",
-"language": "GDScript",
-"path": "res://Shapes/Line.gd"
-}, {
-"base": "Node2D",
-"class": "Rectangle",
-"language": "GDScript",
-"path": "res://Shapes/Rectangle.gd"
-}, {
-"base": "KinematicBody2D",
-"class": "Ship",
-"language": "GDScript",
-"path": "res://Ship/Ship.gd"
-}, {
-"base": "Node2D",
-"class": "Square",
-"language": "GDScript",
-"path": "res://Shapes/Square.gd"
-}, {
-"base": "Node2D",
-"class": "SubDivRect",
-"language": "GDScript",
-"path": "res://World/Obstacles/Destructible/SubDivRect.gd"
-}, {
-"base": "Node2D",
-"class": "SubDividingDestructible",
-"language": "GDScript",
-"path": "res://World/Obstacles/Destructible/SubDividingDestructible.gd"
-} ]
-_global_script_class_icons={
-"Brad": "",
-"Destructible": "",
-"Line": "",
-"Rectangle": "",
-"Ship": "",
-"Square": "",
-"SubDivRect": "",
-"SubDividingDestructible": ""
-}
+config_version=5
 
 [application]
 
 config/name="ReverseThrust"
 run/main_scene="res://World/MainLevel.tscn"
+config/features=PackedStringArray("4.0")
 config/icon="res://icon.png"
 
 [autoload]
@@ -80,37 +29,40 @@ gdscript/warnings/unused_class_variable=true
 
 [display]
 
-window/size/width=1280
-window/size/height=720
-window/vsync/vsync_via_compositor=true
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/stretch/mode="2d"
-window/stretch/aspect="keep"
+window/vsync/vsync_via_compositor=true
+
+[editor]
+
+movie_writer/movie_file="/home/kevin/Desktop/ScreenGrab/particles.avi"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/gdfxr/plugin.cfg" )
+enabled=PackedStringArray("res://addons/gdfxr/plugin.cfg")
 
 [input]
 
 Thrust={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194320,"physical_keycode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":1,"pressure":0.0,"pressed":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777232,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":32,"physical_keycode":0,"key_label":0,"unicode":32,"echo":false,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":12,"pressure":0.0,"pressed":false,"script":null)
- ]
+]
 }
 RotateLeft={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194319,"physical_keycode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":14,"pressure":0.0,"pressed":false,"script":null)
- ]
+]
 }
 RotateRight={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194321,"physical_keycode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":15,"pressure":0.0,"pressed":false,"script":null)
- ]
+]
 }
 
 [input_devices]
@@ -129,23 +81,25 @@ pointing/emulate_mouse_from_touch=false
 
 [physics]
 
+2d/default_gravity=380.0
 common/enable_pause_aware_picking=true
-2d/thread_model=2
+2d/run_on_thread=2
+common/physics_interpolation=true
 
 [rendering]
 
+renderer/rendering_method="mobile"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
+environment/defaults/default_environment="res://default_env.tres"
 quality/driver/fallback_to_gles2=true
 2d/options/use_nvidia_rect_flicker_workaround=true
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=1
 2d/snapping/use_gpu_pixel_snap=true
 vram_compression/import_etc=true
-vram_compression/import_etc2=false
 quality/filters/anisotropic_filter_level=1
 quality/filters/use_nearest_mipmap_filter=true
 gles3/shaders/shader_compilation_mode=2
 gles3/shaders/shader_compilation_mode.mobile=2
 gles3/shaders/shader_compilation_mode.web=2
 gles3/shaders/shader_cache_size_mb=256
-environment/default_clear_color=Color( 0, 0, 0, 1 )
-environment/default_environment="res://default_env.tres"

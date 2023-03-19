@@ -6,13 +6,18 @@ extends Node
 
 var sin_cos_lookup = {}
 var Brad = load("Maths/Brad.gd")
+var my_brad : Brad
 
-
-func _init() -> void:
+func _init():
+	my_brad = Brad.new()
 	for i in range(0, 128):
 		var brad = Brad.new()
 		brad.brad(i)
-		sin_cos_lookup[i] = sin(deg2rad(brad.get_angle_deg()))
+		sin_cos_lookup[i] = sin(deg_to_rad(brad.get_angle_deg()))
+
+func deg_to_brad(a : float) -> int:
+	my_brad.set_angle_deg(a)
+	return my_brad.get_angle()
 
 
 func sin_i(a : int) -> float:
@@ -27,11 +32,11 @@ func cos_i(a : int) -> float:
 	return sin_i(a + 64)
 
 
-func sin(brad : Brad) -> float:
+func sin_b(brad : Brad) -> float:
 	return sin_i(brad.get_angle())
 
 
-func cos(brad : Brad) -> float:
+func cos_b(brad : Brad) -> float:
 	return cos_i(brad.get_angle())
 
 
@@ -43,3 +48,6 @@ func brad_to_vector_2d(brad_angle: Brad) -> Vector2:
 		brad_to_vector_lookup[a] = Vector2(sin_i(a), cos_i(a))
 	return brad_to_vector_lookup[a]
 
+func brad_val_to_vector_2d(brad_val : int) -> Vector2:
+	my_brad.set_angle(brad_val)
+	return brad_to_vector_2d(my_brad)

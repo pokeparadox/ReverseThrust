@@ -1,14 +1,17 @@
 [remap]
 
 importer="com.timothyqiu.gdfxr.importer"
-type="AudioStreamSample"
-path="res://.import/Teleport.sfxr-45c32808f4171bb64ab9ac1cf5183132.sample"
+type="AudioStreamWAV"
+uid="uid://c11tv2hhfeo3u"
+path="res://.godot/imported/Teleport.sfxr-45c32808f4171bb64ab9ac1cf5183132.sample"
 
 [deps]
 
 source_file="res://World/Obstacles/LevelDivider/Teleport.sfxr"
-dest_files=[ "res://.import/Teleport.sfxr-45c32808f4171bb64ab9ac1cf5183132.sample" ]
+dest_files=["res://.godot/imported/Teleport.sfxr-45c32808f4171bb64ab9ac1cf5183132.sample"]
 
 [params]
 
 loop=false
+bit_depth=0
+sample_rate=0

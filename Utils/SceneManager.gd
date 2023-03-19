@@ -10,12 +10,12 @@ func _ready():
 
 # create a function to switch between scenes 
 func SetScene(scene):
-	#previousSceneName = currentScene.get_filename()
+	#previousSceneName = currentScene.get_scene_file_path()
 	#clean up the current scene
 	currentScene.queue_free()
 	#load the file passed in as the param "scene"
 	var s = ResourceLoader.load(scene)
 	#create an instance of our scene
-	currentScene = s.instance()
+	currentScene = s.instantiate()
 	# add scene to root
 	get_tree().get_root().add_child(currentScene)

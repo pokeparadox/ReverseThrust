@@ -4,7 +4,7 @@ class_name SubDivRect
 
 var SubDividingDestructible = load("res://World/Obstacles/Destructible/SubDividingDestructible.tscn")
 var rect_dims : Vector2
-var colour = Color.aquamarine
+var colour = Color.AQUAMARINE
 
 # An class which takes a set of rectangular dimensions and fills it with an appropriate number of subdiv blocks
 func setup(dimensions : Vector2) -> void:
@@ -22,7 +22,7 @@ func build_horizontally(dimensions : Vector2) -> void:
 	var num_blocks: int = dimensions.x/block_size
 	for _i in range(num_blocks):
 		# Generate an extra obstacle
-		var obstacle = SubDividingDestructible.instance()
+		var obstacle = SubDividingDestructible.instantiate()
 		# Generate the obstacle's position.
 		obstacle.position.x = _i * block_size 
 		obstacle.setup(block_size, colour)
@@ -35,10 +35,10 @@ func build_vertically(dimensions : Vector2) -> void:
 	var num_blocks: int = dimensions.y/block_size
 	for _i in range(num_blocks):
 		# Generate an extra obstacle
-		var obstacle = SubDividingDestructible.instance()
+		var obstacle = SubDividingDestructible.instantiate()
 		# Generate the obstacle's position.
 		obstacle.position.y = _i * block_size 
-		obstacle.Setup(block_size, colour)
+		obstacle.setup(block_size, colour)
 		# Add the obstacle to the scene.
 		add_child(obstacle)
 

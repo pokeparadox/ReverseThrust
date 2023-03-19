@@ -2,14 +2,15 @@ extends Node2D
 # A Scene which detects an incoming collision and at this point increases collision complexity in that quadrant
 class_name SubDividingDestructible
 
+var length : int = 0
 var IsHitting : bool = false
 const MaxLength : int = 300
 var colour : Color
 
-func setup(length : int, c : Color) -> void:
+func setup(_length : int, c : Color) -> void:
 	colour = c
-	length = int(min(MaxLength, length))
-	var halfLength : int = int(length * 0.5)
+	length = int(min(MaxLength, _length))
+	var halfLength : int = int(length * 0.5) + 1
 	var vecHalfLength = Vector2(halfLength, halfLength)
 	$TopLeft.position = -vecHalfLength
 	$TopLeft.SetLength(halfLength)
@@ -36,12 +37,12 @@ func DestructibleHit(destructible : Destructible) -> void:
 
 	IsHitting = true
 	var pos : Vector2 = destructible.position
-	var length : int = destructible.GetLength()
+	var _length : int = destructible.GetLength()
 	var halfLength : int = destructible.GetHalfLength()
 	destructible.queue_free()
 	# Create a new SubdividingDestructible at pos with dims
-	var newDestructible = load(self.filename).instance()
-	newDestructible.setup(length+1, colour)
+	var newDestructible = load(self.scene_file_path).instantiate()
+	newDestructible.setup(_length+1, colour)
 	newDestructible.SetPosition(pos + Vector2(halfLength, halfLength) * 0.5)
 	call_deferred("add_child", newDestructible)
 	IsHitting = false

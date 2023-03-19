@@ -8,7 +8,7 @@ extends Node
 
 const MAX_VALUE: int = 255
 
-var angle: int = 0 setget set_angle
+var angle: int = 0 : set = set_angle
 
 func brad(brad_angle: int):
 	set_angle(brad_angle)
@@ -47,7 +47,7 @@ func get_angle_deg() -> float:
 
 
 func get_angle_rad() -> float:
-	return deg2rad(get_angle_deg())
+	return deg_to_rad(get_angle_deg())
 
 
 func equals(other: Brad) -> bool:

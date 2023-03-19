@@ -1,12 +1,12 @@
 class_name Ship
-extends KinematicBody2D
+extends CharacterBody2D
 
 var Brad = load("Maths/Brad.gd")
 
 signal FuelLevelChanged(fuelLevel)
 
-onready var gravity = ProjectSettings.get("physics/2d/default_gravity")
-onready var screenRes : Vector2 = Resolution.get_resolution()
+@onready var gravity = ProjectSettings.get("physics/2d/default_gravity")
+@onready var screenRes : Vector2 = Resolution.get_resolution()
 
 var shipHeading : Brad
 const ROTATE_SPEED : int = 200
@@ -18,7 +18,7 @@ var Fuel : float = 100.0
 
 var _velocity = Vector2.ZERO
 
-func _init() -> void:
+func _init():
 	shipHeading = Brad.new()
 
 func _ready() -> void:
@@ -61,8 +61,8 @@ func _physics_process(delta):
 	var _collision = move_and_collide(_velocity)
 	if _collision:
 		ShipExplodes(isExploding)
-		if _collision.collider.has_method("Hit"):
-			_collision.collider.Hit()
+		if _collision.get_collider().has_method("Hit"):
+			_collision.get_collider().Hit()
 	if position.y < highestHeight:
 		highestHeight = int(position.y)
 

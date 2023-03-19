@@ -1,14 +1,17 @@
 [remap]
 
 importer="com.timothyqiu.gdfxr.importer"
-type="AudioStreamSample"
-path="res://.import/Explode.sfxr-86228b1eb8a76fccb10bbcdf1beb2c11.sample"
+type="AudioStreamWAV"
+uid="uid://drfy4u4kmnqu5"
+path="res://.godot/imported/Explode.sfxr-86228b1eb8a76fccb10bbcdf1beb2c11.sample"
 
 [deps]
 
 source_file="res://Ship/Explode.sfxr"
-dest_files=[ "res://.import/Explode.sfxr-86228b1eb8a76fccb10bbcdf1beb2c11.sample" ]
+dest_files=["res://.godot/imported/Explode.sfxr-86228b1eb8a76fccb10bbcdf1beb2c11.sample"]
 
 [params]
 
 loop=false
+bit_depth=0
+sample_rate=0

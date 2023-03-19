@@ -1,16 +1,38 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://b8a7h7ljm8rc4"]
 
-[ext_resource path="res://addons/RigidBodyParticles2D/RigidBodyParticles2D.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Ship/Exhaust/ExhaustParticle.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Ship/Explosion/Explosion.gd" type="Script" id=3]
+[ext_resource type="Texture2D" uid="uid://bjryw0jurxpcb" path="res://Ship/Explosion/Explosion.tres" id="2_dbble"]
+[ext_resource type="Script" path="res://Ship/Explosion/Explosion.gd" id="3"]
+[ext_resource type="PackedScene" uid="uid://c45h6fmjbnb8y" path="res://Utils/CollisionParticles/CpEmitter.tscn" id="3_scejy"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ol36x"]
+emission_shape = 3
+emission_box_extents = Vector3(4, 4, 1)
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 4.8, 0)
+initial_velocity_min = 10.53
+initial_velocity_max = 242.1
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+linear_accel_max = 8.42
+color_ramp = ExtResource("2_dbble")
+collision_mode = 1
+collision_friction = 0.01
+collision_bounce = 0.21
 
 [node name="Explosion" type="Node2D"]
-script = ExtResource( 3 )
+script = ExtResource("3")
 
-[node name="ExplosionEmit" parent="." instance=ExtResource( 1 )]
-emitting = false
-amount = 90
-particle_scene = ExtResource( 2 )
-explosiveness = 0.8
-impulse = 250.0
-impulse_spread_degrees = 360.0
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 128
+process_material = SubResource("ParticleProcessMaterial_ol36x")
+lifetime = 2.0
+explosiveness = 0.46
+randomness = 0.09
+trail_enabled = true
+
+[node name="CpEmitter" parent="." instance=ExtResource("3_scejy")]
+max_particles = 256
+spread = 128
+speed = 400.0
+delay = 0.004

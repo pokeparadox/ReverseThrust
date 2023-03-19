@@ -1,8 +1,8 @@
 extends Node2D
 
-export var ApproxLoopLength : float = 0.0
-export var ExactLoopLength : float = 0.0
-export var LoopOffsetCount : int = 0
+@export var ApproxLoopLength : float = 0.0
+@export var ExactLoopLength : float = 0.0
+@export var LoopOffsetCount : int = 0
 
 var LoopStart : float = 0.0
 var LoopEnd : float = 0.0
@@ -57,8 +57,8 @@ func SkipLoop() -> void:
 func _process(_delta: float) -> void:
 	if ExactLoopLength > 0:
 		var p = $Track1
-		var position : float = p.get_playback_position()
-		if position > LoopEnd:
+		var playback_pos : float = p.get_playback_position()
+		if playback_pos > LoopEnd:
 			LoopStart = LoopOffsetCount * ExactLoopLength
 			p.play(LoopStart)
 			if LoopStart >= LoopEnd:

@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/ProgressiveThump.ogg-aa3671c673a596ec08b94befadcd1eaa.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://yqcs1pvixe2d"
+path="res://.godot/imported/ProgressiveThump.ogg-aa3671c673a596ec08b94befadcd1eaa.oggvorbisstr"
 
 [deps]
 
 source_file="res://World/ProgressiveThump.ogg"
-dest_files=[ "res://.import/ProgressiveThump.ogg-aa3671c673a596ec08b94befadcd1eaa.oggstr" ]
+dest_files=["res://.godot/imported/ProgressiveThump.ogg-aa3671c673a596ec08b94befadcd1eaa.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -10,7 +10,7 @@ func set_limits(min_v,  max_v) -> void:
 
 
 func next_float() -> float:
-	return rand_range(min_value, max_value)
+	return randf_range(min_value, max_value)
 
 
 func next_int() -> int:
@@ -18,7 +18,7 @@ func next_int() -> int:
 
 
 func next_float_range(min_v, max_v) -> float:
-	return rand_range(min_v, max_v)
+	return randf_range(min_v, max_v)
 
 
 func next_int_range(min_v, max_v) -> int:

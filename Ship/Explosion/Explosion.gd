@@ -1,6 +1,9 @@
 extends Node2D
 
 func Explode(exploding : bool):
-	$ExplosionEmit.set_emitting(exploding)
-	$ExplosionEmit.visible = exploding
-
+	if not exploding:
+		$GPUParticles2D.restart()
+		
+	$GPUParticles2D.set_emitting(exploding)
+	$GPUParticles2D.visible = exploding
+	$CpEmitter.emitting = exploding

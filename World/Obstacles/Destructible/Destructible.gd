@@ -22,13 +22,14 @@ func GetLength() -> int:
 	return GetHalfLength() * 2
 
 func GetHalfLength() -> int:
-	return $CollisionShape2D.shape.extents.x
+	return $CollisionShape2D.shape.size.x
 
 func SetLength(length : int) -> void:
 	var shape = RectangleShape2D.new()
-	shape.set_extents(Vector2(length, length)*0.5)
+	shape.set_size(Vector2(length, length)*0.5)
 	$CollisionShape2D.shape = shape
 	$Square.length = length
+	$LightOccluder2D.occluder = shape
 
 func _on_Destructable_body_entered(body: Node) -> void:
 	if not IsColliding:
