@@ -19,9 +19,9 @@ Reverse Thrust is inspired heavily on the game Spout! by Kuni.
 ![image](https://user-images.githubusercontent.com/816975/209713890-e4050c61-e830-4866-85a1-754cd664987a.png)
 
 ## WIP Videos
-WIP Dec 2022: https://youtu.be/I5BGvvfgEZw
-GD4 Particles Early WIP Feb 2023: https://youtu.be/Y4rOG17RD6k
-WIP Music: https://youtu.be/ldrzE0UVe4Y
+- WIP Dec 2022: https://youtu.be/I5BGvvfgEZw
+- GD4 Particles Early WIP Feb 2023: https://youtu.be/Y4rOG17RD6k
+- WIP Music: https://youtu.be/ldrzE0UVe4Y
 
 ## Addons used with thanks
 - GDFXR - https://github.com/timothyqiu/gdfxr
