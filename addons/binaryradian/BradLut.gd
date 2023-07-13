@@ -5,7 +5,7 @@ extends Node
 # Ported from original C++ in Penjin by PokeParadox
 
 var sin_cos_lookup = {}
-var Brad = load("Maths/Brad.gd")
+var Brad = load("res://addons/binaryradian/Brad.gd")
 var my_brad : Brad
 
 func _init():
