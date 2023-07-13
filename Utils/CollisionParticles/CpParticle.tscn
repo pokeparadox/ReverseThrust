@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://8icnvcssf6d6"]
+[gd_scene load_steps=8 format=3 uid="uid://8icnvcssf6d6"]
 
 [ext_resource type="Script" path="res://Utils/CollisionParticles/CpParticle.gd" id="1_io2o6"]
 [ext_resource type="PackedScene" path="res://Shapes/Square.tscn" id="2_54awv"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_264a1"]
+bounce = 0.31
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(4, 4)
@@ -46,7 +49,8 @@ _data = {
 [node name="CpParticle" type="RigidBody2D"]
 collision_layer = 2
 collision_mask = 12
-mass = 0.05
+mass = 0.5
+physics_material_override = SubResource("PhysicsMaterial_264a1")
 script = ExtResource("1_io2o6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

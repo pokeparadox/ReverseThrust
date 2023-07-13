@@ -1,7 +1,7 @@
 class_name Ship
 extends CharacterBody2D
 
-var Brad = load("Maths/Brad.gd")
+var Brad = load("res://addons/binaryradian/Brad.gd")
 
 signal FuelLevelChanged(fuelLevel)
 
@@ -45,9 +45,11 @@ func _physics_process(delta):
 		if _velocity.length_squared() < MAX_THRUST_SQ:
 			vec = vec * delta * THRUST_SPEED
 			vec.y = -vec.y
+			if vec.y > 0:
+				vec.y = vec.y * 0.75
 			_velocity += vec
 		if Fuel >= 0:
-			Fuel -= delta * 3
+			Fuel -= delta * 2
 			emit_signal("FuelLevelChanged", Fuel)
 		$Exhaust.set_exhaust(true)
 		if not $ExhaustSound.is_playing():
