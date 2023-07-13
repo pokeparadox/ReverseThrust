@@ -5,39 +5,82 @@ var DestructibleBlock = preload("SubDivRect.tscn")
 const SPACER_OFFSET : int = 50
 
 # Generate the random obstacle placement increasing in complexity with the increasing level.
-func SetLevelObstacles(level):
+func set_level_obstacles(level):
+	#Take area of all blocks and use this as a budget to create new blocks from each level up.
+	#Bias toward width first randomly selecting within an increasing range.
+	#Starting from the lowest part of the next screen
+	#randomly choose a side of the screen (Left , Centre or Right)
+	#Randomly choose to advance or to fill remaining positions
+	#Move upwards the height of the block
+	#deduct from area budget
+	#Repeat from 4 until area budget is used up.
+	#The area budget is increased every level completed
 	var scaler : float = float(level * 0.75)
-		# Create a new block randomly after the lowest position
-	
-	# Randomise positions of existing objects
-	var obstacle = DestructibleBlock.instantiate()
-	obstacle.colour = Color.WHITE
-	# Generate the obstacle's position.
-	var dims := Vector2(Random.next_int_range(SPACER_OFFSET, int(2 * scaler * level + SPACER_OFFSET)), Random.next_int_range(SPACER_OFFSET, int(scaler * level + SPACER_OFFSET)))
-	obstacle.setup(dims)
-
-	# Add the obstacle to the scene.
-	add_child(obstacle)
-	# Randomise the order of the differently sized blocks
-	# We can do this by looping through all blocks and randomly picking an index to swap
-	# We include the current index to allow for not swapping.
+	var current_height : int = 40
+	var segment_height : int = 40
 	var blocks := get_children()
 	var num_blocks : int = blocks.size()
-	for i in range(0, num_blocks-1):
-		var new_i = Random.next_int_range(0, num_blocks-1)
-		var t = blocks[i]
-		blocks[i] = blocks[new_i]
-		blocks[new_i] = t
-	
-	var lowest_block_pos : int = 0
-	var screen_pos := Vector2(50, 100)
-	# Once the orders have been swapped we lay them out in order with random offsets.
-	# We keep track of the lowest blocks and move to the next line if the block can't fit horizontally.
+	var block_budget : int = 4 + (2 * scaler)
+	var max_block_width : int =  max(screenRes.x * 0.15 * scaler, screenRes.x * 0.3)  
 	for b in blocks:
-		var spacer_vector : Vector2 = Vector2(Random.next_int_range(0, SPACER_OFFSET + b.rect_dims.x), 0)
-		b.position = screen_pos + spacer_vector
-		if b.position.x + b.rect_dims.x > screenRes.x:
-			spacer_vector.y = lowest_block_pos
-			b.position = spacer_vector
-			lowest_block_pos = b.position.y + b.rect_dims.y
-		screen_pos = b.position + Vector2(b.rect_dims.x, 0)
+		b.queue_free() 
+	
+	while block_budget > 0:
+		var gen_left : bool = Random.next_bool()
+		var gen_centre : bool = Random.next_bool()
+		var gen_right : bool = Random.next_bool()
+		
+		if gen_left and gen_centre and gen_right:
+			var dims: Vector2 = Vector2(Random.next_int_range(segment_height, max_block_width*3), segment_height)
+			block_budget = block_budget - 3
+			var obstacle = DestructibleBlock.instantiate()
+			obstacle.colour = Color.WHITE
+			obstacle.setup(dims)
+			obstacle.position.y = current_height
+			add_child(obstacle)
+		elif gen_left and gen_centre:
+			var dims: Vector2 = Vector2(Random.next_int_range(segment_height, max_block_width*2), segment_height)
+			block_budget = block_budget - 2
+			var obstacle = DestructibleBlock.instantiate()
+			obstacle.colour = Color.WHITE
+			obstacle.setup(dims)
+			obstacle.position.y = current_height
+			add_child(obstacle)
+		elif gen_right and gen_centre:
+			var dims: Vector2 = Vector2(Random.next_int_range(segment_height, max_block_width*2), segment_height)
+			block_budget = block_budget - 2
+			var obstacle = DestructibleBlock.instantiate()
+			obstacle.colour = Color.WHITE
+			obstacle.setup(dims)
+			obstacle.position = Vector2(screenRes.x * 0.3, current_height)
+			add_child(obstacle)
+		else:
+			if gen_left:
+				var dims: Vector2 = Vector2(Random.next_int_range(segment_height, max_block_width), segment_height)
+				block_budget = block_budget - 1
+				var obstacle = DestructibleBlock.instantiate()
+				obstacle.colour = Color.WHITE
+				obstacle.setup(dims)
+				obstacle.position.y = current_height
+				add_child(obstacle)
+				
+			if gen_centre:
+				var dims: Vector2 = Vector2(Random.next_int_range(segment_height, max_block_width), segment_height)
+				block_budget = block_budget - 1
+				var obstacle = DestructibleBlock.instantiate()
+				obstacle.colour = Color.WHITE
+				obstacle.setup(dims)
+				obstacle.position = Vector2(screenRes.x * 0.3, current_height)
+				add_child(obstacle)
+				
+			if gen_right:
+				var dims: Vector2 = Vector2(Random.next_int_range(segment_height, max_block_width), segment_height)
+				block_budget = block_budget - 1
+				var obstacle = DestructibleBlock.instantiate()
+				obstacle.colour = Color.WHITE
+				obstacle.setup(dims)
+				obstacle.position = Vector2(screenRes.x - dims.x - segment_height, current_height)
+				add_child(obstacle)
+		# Endif
+		current_height = current_height + segment_height
+	

@@ -24,6 +24,7 @@ collision_bounce = 0.21
 script = ExtResource("3")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
 amount = 128
 process_material = SubResource("ParticleProcessMaterial_ol36x")
 lifetime = 2.0

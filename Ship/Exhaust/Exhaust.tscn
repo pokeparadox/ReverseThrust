@@ -26,6 +26,7 @@ rotation = 1.5708
 script = ExtResource("4")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
 process_material = SubResource("ParticleProcessMaterial_qsqok")
 lifetime = 2.5
 randomness = 0.09
@@ -35,5 +36,6 @@ trail_sections = 4
 trail_section_subdivisions = 2
 
 [node name="CpEmitter" parent="." instance=ExtResource("3_w2uk7")]
+emitting = false
 max_particles = 32
 delay = 0.001

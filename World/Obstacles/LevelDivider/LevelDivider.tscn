@@ -2,15 +2,14 @@
 
 [ext_resource type="Script" path="res://World/Obstacles/LevelDivider/LevelDivider.gd" id="2"]
 [ext_resource type="AudioStream" uid="uid://c11tv2hhfeo3u" path="res://World/Obstacles/LevelDivider/Teleport.sfxr" id="3"]
-[ext_resource type="PackedScene" uid="uid://cxvmw80es8vj7" path="res://World/Obstacles/Destructible/SubDivRect.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://cxvmw80es8vj7" path="res://World/Obstacles/Destructible/SubDivRect.tscn" id="3_a6jww"]
 
 [node name="LevelDivider" type="Node2D"]
 script = ExtResource("2")
 
 [node name="PositionNextLevel" type="Marker2D" parent="."]
 
-[node name="SubDivRect" parent="." instance=ExtResource("4")]
-position = Vector2(3, 0)
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3")
+
+[node name="SubDivRect" parent="." instance=ExtResource("3_a6jww")]

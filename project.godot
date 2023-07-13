@@ -11,15 +11,16 @@ config_version=5
 [application]
 
 config/name="ReverseThrust"
+config/tags=PackedStringArray("game", "2d_shooter", "arcade")
 run/main_scene="res://World/MainLevel.tscn"
-config/features=PackedStringArray("4.0")
+config/features=PackedStringArray("4.1")
 config/icon="res://icon.png"
 
 [autoload]
 
-BradLut="*res://Maths/BradLut.gd"
 Resolution="*res://Utils/Resolution.gd"
 Random="*res://Maths/Random.gd"
+BradLut="*res://addons/binaryradian/BradLut.gd"
 
 [debug]
 
@@ -40,7 +41,7 @@ movie_writer/movie_file="/home/kevin/Desktop/ScreenGrab/particles.avi"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gdfxr/plugin.cfg")
+enabled=PackedStringArray("res://addons/binaryradian/plugin.cfg", "res://addons/gdfxr/plugin.cfg")
 
 [input]
 
@@ -88,7 +89,6 @@ common/physics_interpolation=true
 
 [rendering]
 
-renderer/rendering_method="mobile"
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
 environment/defaults/default_environment="res://default_env.tres"
 quality/driver/fallback_to_gles2=true

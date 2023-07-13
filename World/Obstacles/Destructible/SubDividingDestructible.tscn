@@ -7,16 +7,15 @@
 script = ExtResource("1")
 
 [node name="TopLeft" parent="." instance=ExtResource("2")]
-position = Vector2(-4, -4)
 
 [node name="TopRight" parent="." instance=ExtResource("2")]
-position = Vector2(4, -4)
+position = Vector2(6, 2)
 
 [node name="BottomLeft" parent="." instance=ExtResource("2")]
-position = Vector2(-4, 4)
+position = Vector2(2, 6)
 
 [node name="BottomRight" parent="." instance=ExtResource("2")]
-position = Vector2(4, 4)
+position = Vector2(6, 6)
 
 [connection signal="DestructibleHit" from="TopLeft" to="." method="_on_TopLeft_DestructibleHit"]
 [connection signal="DestructibleHit" from="TopRight" to="." method="_on_TopRight_DestructibleHit"]

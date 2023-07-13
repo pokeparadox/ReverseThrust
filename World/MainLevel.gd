@@ -6,6 +6,10 @@ extends Node2D
 @onready var FloorOffset : int = CameraStartHeight - FloorStartLastHeight
 var GameLevel : int = 0
 
+#func _ready():
+	#$SubDividingDestructible.setup_w_h(Vector2(100,50), Color.BLUE)
+	#$SubDividingDestructible.position = Vector2(200, 200)
+
 func _enter_tree():
 	$Ship/Exhaust.reset()
 
@@ -26,8 +30,10 @@ func ProcessWallsAndFloor() -> void:
 		$DeathZone.position.y = change
 
 func CheckLevelProgression() -> void:
-	var levelShift : int = 800
 	if $Ship.position.y < $LevelDivider.position.y:
+		GameLevel += 1
+		var levelShift : int = 800
+		levelShift = levelShift + (10 * GameLevel)
 		$ProgressiveMusicPlayer.SkipLoop()
 		var nextDividerHeight : int = $LevelDivider.position.y - levelShift
 		$LevelDivider.reset()
@@ -36,5 +42,5 @@ func CheckLevelProgression() -> void:
 		$Ship/Exhaust.level_up()
 		$Ship.Fuel += max(float(1000.0 / GameLevel), 10)
 		$Ship.Fuel = min($Ship.Fuel, 100.0)
-		$RandomWallGen.SetLevelObstacles(GameLevel)
+		$RandomWallGen.set_level_obstacles(GameLevel)
 		$RandomWallGen.position.y = $RandomWallGen.position.y - levelShift

@@ -16,20 +16,21 @@ func _on_Crumble_finished() -> void:
 	queue_free()
 
 func SetColour(colour : Color) -> void:
-	$Square.colour = colour
+	$Rectangle.colour = colour
 
-func GetLength() -> int:
-	return GetHalfLength() * 2
+func get_dimensions() -> Vector2:
+	return $CollisionShape2D.shape.size
 
-func GetHalfLength() -> int:
-	return $CollisionShape2D.shape.size.x
+func get_half_dimensions() -> Vector2:
+	return $CollisionShape2D.shape.size * 0.5
 
-func SetLength(length : int) -> void:
+func SetDims(dims : Vector2) -> void:
 	var shape = RectangleShape2D.new()
-	shape.set_size(Vector2(length, length)*0.5)
+	shape.set_size(dims)
 	$CollisionShape2D.shape = shape
-	$Square.length = length
 	$LightOccluder2D.occluder = shape
+	$Rectangle.set_dimensions(dims)
+	$Rectangle.position = $Rectangle.position - dims * 0.5
 
 func _on_Destructable_body_entered(body: Node) -> void:
 	if not IsColliding:
@@ -38,8 +39,8 @@ func _on_Destructable_body_entered(body: Node) -> void:
 			body.ShipExplodes(false)
 		if body.has_method("hit"):
 			body.hit()
-
-		if GetHalfLength() <= MinHalfLength:
+		var halfDims : Vector2 = get_half_dimensions()
+		if halfDims.x < MinHalfLength and halfDims.y < MinHalfLength:
 			Hit()
 		else:
 			emit_signal("DestructibleHit", self)

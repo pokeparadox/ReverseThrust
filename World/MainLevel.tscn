@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d0fb4lmbbb5qy"]
+[gd_scene load_steps=14 format=3 uid="uid://d0fb4lmbbb5qy"]
 
 [ext_resource type="PackedScene" uid="uid://bkfanth2d48as" path="res://Ship/Ship.tscn" id="1"]
 [ext_resource type="PackedScene" path="res://Shapes/Rectangle.tscn" id="2"]
@@ -6,8 +6,9 @@
 [ext_resource type="Script" path="res://World/MainLevel.gd" id="4"]
 [ext_resource type="PackedScene" uid="uid://bedkclx53f41n" path="res://World/Obstacles/LevelDivider/LevelDivider.tscn" id="5"]
 [ext_resource type="PackedScene" path="res://Utils/ProgressiveMusicPlayer/ProgressiveMusicPlayer.tscn" id="6"]
-[ext_resource type="PackedScene" path="res://World/Obstacles/Destructible/RandomWallGen.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://c2tos0dc0x1py" path="res://World/Obstacles/Destructible/RandomWallGen.tscn" id="7"]
 [ext_resource type="PackedScene" path="res://Ship/Fuel/FuelBar.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://bfgn1r0yntfv7" path="res://World/Obstacles/Destructible/SubDividingDestructible.tscn" id="9_7rwt1"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(50, 2000)
@@ -84,11 +85,16 @@ BackgroundColour = Color(1, 1, 1, 0.501961)
 ForegroundColour = Color(1, 0, 0, 0.501961)
 
 [node name="LevelDivider" parent="." instance=ExtResource("5")]
-position = Vector2(24, 0)
+position = Vector2(322, 0)
 
 [node name="ProgressiveMusicPlayer" parent="." instance=ExtResource("6")]
 ApproxLoopLength = 12.746
 
 [node name="RandomWallGen" parent="." instance=ExtResource("7")]
+position = Vector2(25, 0)
+
+[node name="SubDividingDestructible" parent="." instance=ExtResource("9_7rwt1")]
+visible = false
+position = Vector2(200, 100)
 
 [connection signal="FuelLevelChanged" from="Ship" to="Camera3D/FuelBar" method="_on_Ship_FuelLevelChanged"]

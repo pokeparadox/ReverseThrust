@@ -16,6 +16,9 @@ func _draw() -> void:
 	else:
 		draw_rect(Rect2(Vector2.ZERO, dims), colour, is_filled, line_width)
 
+func set_dimensions(dims : Vector2) -> void:
+	width = dims.x
+	height = dims.y
 
 func _set_is_filled(value : bool) -> void:
 	is_filled = value

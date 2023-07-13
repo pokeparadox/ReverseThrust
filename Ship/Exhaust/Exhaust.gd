@@ -37,5 +37,5 @@ func _set_level(l : int) -> void:
 	$CpEmitter.max_particles = min(max(default_particles, default_particles * level * level_scaler), max_particles)
 	$GPUParticles2D.amount = $CpEmitter.max_particles * 0.75
 	$GPUParticles2D.randomness = min(0.9, 0.3 + (level_scaler/20))
-	$CpEmitter.spread = (l + 3) * 0.25
+	$CpEmitter.spread = (l + 5) * 0.25
 	
