@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bkfanth2d48as"]
 
-[ext_resource type="PackedScene" path="res://Shapes/Line.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://cjesc1uuw1wg7" path="res://Shapes/Line.tscn" id="1"]
 [ext_resource type="PackedScene" path="res://Shapes/Square.tscn" id="2"]
 [ext_resource type="Script" path="res://Ship/Ship.gd" id="3"]
 [ext_resource type="PackedScene" uid="uid://cpvlq7tmfapy7" path="res://Ship/Exhaust/Exhaust.tscn" id="4"]

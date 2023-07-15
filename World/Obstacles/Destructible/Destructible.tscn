@@ -29,12 +29,5 @@ script = ExtResource("2_1o8xf")
 [node name="Crumble" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2")
 
-[node name="Rectangle2" type="Node2D" parent="."]
-position = Vector2(-2, -2)
-script = ExtResource("2_1o8xf")
-width = 1.0
-height = 1.0
-colour = Color(1, 0, 0, 1)
-
 [connection signal="body_entered" from="." to="." method="_on_Destructable_body_entered"]
 [connection signal="finished" from="Crumble" to="." method="_on_Crumble_finished"]

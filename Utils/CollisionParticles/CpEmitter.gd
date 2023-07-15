@@ -2,7 +2,7 @@ extends Node2D
 
 var Brad = load("res://addons/binaryradian/Brad.gd")
 @export var emitting : bool = true
-@export var max_particles : int = 128
+@export var max_particles : int = 512
 @export var spread : int = 0
 @export var angle_brads : int = 64
 @export var speed : float = 100

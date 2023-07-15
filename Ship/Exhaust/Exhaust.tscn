@@ -37,5 +37,5 @@ trail_section_subdivisions = 2
 
 [node name="CpEmitter" parent="." instance=ExtResource("3_w2uk7")]
 emitting = false
-max_particles = 32
+max_particles = 64
 delay = 0.001

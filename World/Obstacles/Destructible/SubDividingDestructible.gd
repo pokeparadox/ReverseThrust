@@ -4,7 +4,7 @@ class_name SubDividingDestructible
 
 var rect_dims : Vector2 = Vector2.ZERO
 var IsHitting : bool = false
-const min_length : int = 6
+const min_length : int = 8
 var colour : Color
 
 func setup_w_h(dims : Vector2, c : Color) -> void:

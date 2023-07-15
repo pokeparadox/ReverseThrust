@@ -30,7 +30,7 @@ func SetDims(dims : Vector2) -> void:
 	$CollisionShape2D.shape = shape
 	$LightOccluder2D.occluder = shape
 	$Rectangle.set_dimensions(dims)
-	$Rectangle.position = $Rectangle.position - dims * 0.5
+	$Rectangle.position = - dims * 0.5
 
 func _on_Destructable_body_entered(body: Node) -> void:
 	if not IsColliding:

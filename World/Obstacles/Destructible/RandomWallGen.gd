@@ -15,12 +15,12 @@ func set_level_obstacles(level):
 	#deduct from area budget
 	#Repeat from 4 until area budget is used up.
 	#The area budget is increased every level completed
-	var scaler : float = float(level * 0.75)
+	var scaler : float = float(level * 0.5)
 	var current_height : int = 40
 	var segment_height : int = 40
 	var blocks := get_children()
 	var num_blocks : int = blocks.size()
-	var block_budget : int = 4 + (2 * scaler)
+	var block_budget : int = 2 + (2 * scaler)
 	var max_block_width : int =  max(screenRes.x * 0.15 * scaler, screenRes.x * 0.3)  
 	for b in blocks:
 		b.queue_free() 

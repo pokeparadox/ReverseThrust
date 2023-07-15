@@ -4,7 +4,7 @@ extends Node2D
 @export var max_particles : int = 2000
 @export var default_spread : float = 2.0
 @export var max_spread : float = 45.0
-@export var level_scaler : float = 0.4
+@export var level_scaler : float = 0.1
 
 var level : int = 0
 
