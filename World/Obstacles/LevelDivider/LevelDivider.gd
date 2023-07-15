@@ -1,13 +1,14 @@
 extends Node2D
 
-var dimensions : Vector2 = Vector2(Resolution.get_width()-24,6)
 
 
-func _enter_tree():
-	$SubDivRect.colour = Color.AQUAMARINE
-	$SubDivRect.setup(dimensions)
+# TODO Update generation of this to be a double row of 4x4 destructible blocks The subdiv blocks slow progress too much.
+
+#func _enter_tree():
+#	$SubDivRect.colour = Color.AQUAMARINE
+#	$SubDivRect.setup(dimensions)
 
 
 func reset() -> void:
 	$AudioStreamPlayer.play()
-	$SubDivRect.reset()
+	$DestructibleBlock.reset()

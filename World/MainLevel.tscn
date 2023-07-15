@@ -85,7 +85,7 @@ BackgroundColour = Color(1, 1, 1, 0.501961)
 ForegroundColour = Color(1, 0, 0, 0.501961)
 
 [node name="LevelDivider" parent="." instance=ExtResource("5")]
-position = Vector2(322, 0)
+position = Vector2(23, 0)
 
 [node name="ProgressiveMusicPlayer" parent="." instance=ExtResource("6")]
 ApproxLoopLength = 12.746
