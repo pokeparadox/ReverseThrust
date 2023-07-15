@@ -46,7 +46,7 @@ func _physics_process(delta):
 			vec = vec * delta * THRUST_SPEED
 			vec.y = -vec.y
 			if vec.y > 0:
-				vec.y = vec.y * 0.75
+				vec.y = vec.y * 0.5
 			_velocity += vec
 		if Fuel >= 0:
 			Fuel -= delta * 2
@@ -66,7 +66,7 @@ func _physics_process(delta):
 		if _collision.get_collider().has_method("Hit"):
 			_collision.get_collider().Hit()
 	if position.y < highestHeight:
-		highestHeight = int(position.y)
+		highestHeight = int(position.y) -100
 
 func ShipExplodes(exploding : bool) -> void:
 	if not exploding:

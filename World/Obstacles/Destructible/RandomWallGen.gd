@@ -15,13 +15,14 @@ func set_level_obstacles(level):
 	#deduct from area budget
 	#Repeat from 4 until area budget is used up.
 	#The area budget is increased every level completed
-	var scaler : float = float(level * 0.5)
+	var scaler : float = float(level * 0.25)
+	const offset : int = 60
 	var current_height : int = 40
 	var segment_height : int = 40
 	var blocks := get_children()
-	var num_blocks : int = blocks.size()
-	var block_budget : int = 2 + (2 * scaler)
-	var max_block_width : int =  max(screenRes.x * 0.15 * scaler, screenRes.x * 0.3)  
+
+	var block_budget : int = int(2 + (2 * scaler))
+	var max_block_width : int =  max(screenRes.x * 0.05 * scaler, screenRes.x * 0.2)  
 	for b in blocks:
 		b.queue_free() 
 	
@@ -31,11 +32,12 @@ func set_level_obstacles(level):
 		var gen_right : bool = Random.next_bool()
 		
 		if gen_left and gen_centre and gen_right:
-			var dims: Vector2 = Vector2(Random.next_int_range(segment_height, max_block_width*3), segment_height)
+			var dims: Vector2 = Vector2(Random.next_int_range(segment_height, max_block_width*2.5), segment_height)
 			block_budget = block_budget - 3
 			var obstacle = DestructibleBlock.instantiate()
 			obstacle.colour = Color.WHITE
 			obstacle.setup(dims)
+			obstacle.position.x += offset
 			obstacle.position.y = current_height
 			add_child(obstacle)
 		elif gen_left and gen_centre:
@@ -44,6 +46,7 @@ func set_level_obstacles(level):
 			var obstacle = DestructibleBlock.instantiate()
 			obstacle.colour = Color.WHITE
 			obstacle.setup(dims)
+			obstacle.position.x += offset
 			obstacle.position.y = current_height
 			add_child(obstacle)
 		elif gen_right and gen_centre:
@@ -61,6 +64,7 @@ func set_level_obstacles(level):
 				var obstacle = DestructibleBlock.instantiate()
 				obstacle.colour = Color.WHITE
 				obstacle.setup(dims)
+				obstacle.position.x = obstacle.position.x + offset
 				obstacle.position.y = current_height
 				add_child(obstacle)
 				
@@ -79,7 +83,7 @@ func set_level_obstacles(level):
 				var obstacle = DestructibleBlock.instantiate()
 				obstacle.colour = Color.WHITE
 				obstacle.setup(dims)
-				obstacle.position = Vector2(screenRes.x - dims.x - segment_height, current_height)
+				obstacle.position = Vector2((screenRes.x - dims.x - segment_height) - offset, current_height)
 				add_child(obstacle)
 		# Endif
 		current_height = current_height + segment_height

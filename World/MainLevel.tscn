@@ -91,7 +91,7 @@ position = Vector2(23, 0)
 ApproxLoopLength = 12.746
 
 [node name="RandomWallGen" parent="." instance=ExtResource("7")]
-position = Vector2(25, 0)
+position = Vector2(23, 33)
 
 [node name="SubDividingDestructible" parent="." instance=ExtResource("9_7rwt1")]
 visible = false
