@@ -12,7 +12,7 @@ var shipHeading : Brad
 const ROTATE_SPEED : int = 200
 const THRUST_SPEED : int = 20
 const MAX_THRUST_SQ : int = 800
-var highestHeight : int = 0
+var last_safe_position : Vector2 = self.global_position
 var Fuel : float = 100.0
 
 
@@ -49,7 +49,7 @@ func _physics_process(delta):
 				vec.y = vec.y * 0.5
 			_velocity += vec
 		if Fuel >= 0:
-			Fuel -= delta * 2
+			Fuel -= delta * 3
 			emit_signal("FuelLevelChanged", Fuel)
 		$Exhaust.set_exhaust(true)
 		if not $ExhaustSound.is_playing():
@@ -65,11 +65,10 @@ func _physics_process(delta):
 		ShipExplodes(isExploding)
 		if _collision.get_collider().has_method("Hit"):
 			_collision.get_collider().Hit()
-	if position.y < highestHeight:
-		highestHeight = int(position.y) -100
 
 func ShipExplodes(exploding : bool) -> void:
 	if not exploding:
+		$WaypointTimer.stop()
 		setShipVisible(false)
 		$ExplodeSound.play()
 		$Exhaust.reset()
@@ -89,8 +88,13 @@ func setShipVisible(isVisible : bool) -> void:
 
 func _on_ExplodeSound_finished() -> void:
 	_ready()
-	position.y = highestHeight + 50
+	self.global_position = last_safe_position
+	$WaypointTimer.start()
 
 
 func _on_FuelBar_FuelLevelChanged() -> void:
 	pass # Replace with function body.
+
+
+func _on_waypoint_timer_timeout():
+	last_safe_position = self.global_position
