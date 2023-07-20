@@ -4,6 +4,26 @@ var DestructibleBlock = preload("SubDivRect.tscn")
 @onready var screenRes : Vector2 = Resolution.get_resolution()
 const SPACER_OFFSET : int = 50
 
+# Types of generation
+enum GenType 
+{
+	GEN_ALL, 
+	GEN_LEFT_CENTRE,
+	GEN_RIGHT_CENTRE,
+	GEN_LEFT,
+	GEN_RIGHT,
+	GEN_CENTRE
+}
+
+const GEN_TYPES := [ 
+	GenType.GEN_ALL, 
+	GenType.GEN_LEFT_CENTRE,
+	GenType.GEN_RIGHT_CENTRE,
+	GenType.GEN_LEFT,
+	GenType.GEN_RIGHT,
+	GenType.GEN_CENTRE
+	]
+
 # Generate the random obstacle placement increasing in complexity with the increasing level.
 func set_level_obstacles(level):
 	#Take area of all blocks and use this as a budget to create new blocks from each level up.
@@ -27,38 +47,35 @@ func set_level_obstacles(level):
 		b.queue_free() 
 	
 	while block_budget > 0:
-		var gen_left : bool = Random.next_bool()
-		var gen_centre : bool = Random.next_bool()
-		var gen_right : bool = Random.next_bool()
-		
-		if gen_left and gen_centre and gen_right:
-			var dims: Vector2 = Vector2(Random.next_int_range(segment_height, max_block_width*2.5), segment_height)
-			block_budget = block_budget - 3
-			var obstacle = DestructibleBlock.instantiate()
-			obstacle.colour = Color.WHITE
-			obstacle.setup(dims)
-			obstacle.position.x += offset
-			obstacle.position.y = current_height
-			add_child(obstacle)
-		elif gen_left and gen_centre:
-			var dims: Vector2 = Vector2(Random.next_int_range(segment_height, max_block_width*2), segment_height)
-			block_budget = block_budget - 2
-			var obstacle = DestructibleBlock.instantiate()
-			obstacle.colour = Color.WHITE
-			obstacle.setup(dims)
-			obstacle.position.x += offset
-			obstacle.position.y = current_height
-			add_child(obstacle)
-		elif gen_right and gen_centre:
-			var dims: Vector2 = Vector2(Random.next_int_range(segment_height, max_block_width*2), segment_height)
-			block_budget = block_budget - 2
-			var obstacle = DestructibleBlock.instantiate()
-			obstacle.colour = Color.WHITE
-			obstacle.setup(dims)
-			obstacle.position = Vector2(screenRes.x * 0.3, current_height)
-			add_child(obstacle)
-		else:
-			if gen_left:
+		var choice : GenType = GEN_TYPES.pick_random()
+		match choice:
+			GenType.GEN_ALL:
+				var dims: Vector2 = Vector2(Random.next_int_range(segment_height, max_block_width*2.5), segment_height)
+				block_budget = block_budget - 3
+				var obstacle = DestructibleBlock.instantiate()
+				obstacle.colour = Color.WHITE
+				obstacle.setup(dims)
+				obstacle.position.x += offset
+				obstacle.position.y = current_height
+				add_child(obstacle)
+			GenType.GEN_LEFT_CENTRE:
+				var dims: Vector2 = Vector2(Random.next_int_range(segment_height, max_block_width*2), segment_height)
+				block_budget = block_budget - 2
+				var obstacle = DestructibleBlock.instantiate()
+				obstacle.colour = Color.WHITE
+				obstacle.setup(dims)
+				obstacle.position.x += offset
+				obstacle.position.y = current_height
+				add_child(obstacle)
+			GenType.GEN_RIGHT_CENTRE:
+				var dims: Vector2 = Vector2(Random.next_int_range(segment_height, max_block_width*2), segment_height)
+				block_budget = block_budget - 2
+				var obstacle = DestructibleBlock.instantiate()
+				obstacle.colour = Color.WHITE
+				obstacle.setup(dims)
+				obstacle.position = Vector2(screenRes.x * 0.3, current_height)
+				add_child(obstacle)
+			GenType.GEN_LEFT:
 				var dims: Vector2 = Vector2(Random.next_int_range(segment_height, max_block_width), segment_height)
 				block_budget = block_budget - 1
 				var obstacle = DestructibleBlock.instantiate()
@@ -67,8 +84,7 @@ func set_level_obstacles(level):
 				obstacle.position.x = obstacle.position.x + offset
 				obstacle.position.y = current_height
 				add_child(obstacle)
-				
-			if gen_centre:
+			GenType.GEN_CENTRE:
 				var dims: Vector2 = Vector2(Random.next_int_range(segment_height, max_block_width), segment_height)
 				block_budget = block_budget - 1
 				var obstacle = DestructibleBlock.instantiate()
@@ -76,8 +92,7 @@ func set_level_obstacles(level):
 				obstacle.setup(dims)
 				obstacle.position = Vector2(screenRes.x * 0.3, current_height)
 				add_child(obstacle)
-				
-			if gen_right:
+			GenType.GEN_RIGHT:
 				var dims: Vector2 = Vector2(Random.next_int_range(segment_height, max_block_width), segment_height)
 				block_budget = block_budget - 1
 				var obstacle = DestructibleBlock.instantiate()
@@ -85,6 +100,6 @@ func set_level_obstacles(level):
 				obstacle.setup(dims)
 				obstacle.position = Vector2((screenRes.x - dims.x - segment_height) - offset, current_height)
 				add_child(obstacle)
-		# Endif
+		# End Match
 		current_height = current_height + segment_height
 	

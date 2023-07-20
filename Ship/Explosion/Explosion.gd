@@ -1,6 +1,6 @@
 extends Node2D
 
-func Explode(exploding : bool):
+func explode(exploding : bool):
 	if not exploding:
 		$GPUParticles2D.restart()
 		

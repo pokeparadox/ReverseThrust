@@ -27,7 +27,7 @@ func _ready() -> void:
 	shipHeading.set_angle(0)
 	$Exhaust.set_exhaust(false)
 	$Exhaust.visible = false
-	$Explosion.Explode(false)
+	$Explosion.explode(false)
 	setShipVisible(true)
 
 func _physics_process(delta):
@@ -73,7 +73,7 @@ func ShipExplodes(exploding : bool) -> void:
 		$ExplodeSound.play()
 		$Exhaust.reset()
 
-	$Explosion.Explode(true)
+	$Explosion.explode(true)
 
 func SetShipThrusterAngle(thrust: float):
 	$Thruster.rotation_degrees = thrust

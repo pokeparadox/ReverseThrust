@@ -32,7 +32,7 @@ func next_bool() -> bool:
 		return false
 
 
-func _ready():
-	randomize()
-	rand.randomize()
+#func _ready():
+#	randomize()
+#	rand.randomize()
 

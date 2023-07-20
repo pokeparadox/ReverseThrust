@@ -46,7 +46,7 @@ func build_horizontally(pos : Vector2, dimensions : Vector2) -> void:
 		# Generate the obstacle's position.
 		obstacle.position = pos - (Vector2(dimensions.x, block_size) * 0.25) 
 		obstacle.setup(block_size, colour)
-		obstacle.position.x = obstacle.position.x + (_i * block_size) 
+		obstacle.position.x = (obstacle.position.x + (_i * block_size)) 
 		
 		# Add the obstacle to the scene.
 		call_deferred("add_child", obstacle)
@@ -75,7 +75,7 @@ func DestructibleHit(destructible : Destructible) -> void:
 	var _halfDims : Vector2 = destructible.get_half_dimensions()
 	destructible.queue_free()
 
-	var new_pos : Vector2 = pos - _halfDims * 0.5
+	var new_pos : Vector2 = pos - (_halfDims * 0.5)
 	
 	if _halfDims.x < min_length:
 		build_vertically(new_pos, _dims)
